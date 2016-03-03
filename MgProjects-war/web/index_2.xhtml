@@ -345,18 +345,18 @@
                         </div>
                         <div class="form-group ">
                             <h:outputLabel for="email" class="sr-only">Email</h:outputLabel>
-                            <h:inputTextarea id="email" class="form-control" p:placeholder="Email"></h:inputTextarea>
+                            <h:inputTextarea id="email" value="#{sendEmailBean.mail.destiny}" class="form-control" p:placeholder="Email"></h:inputTextarea>
                         </div>
                         <div class="form-group ">
-                            <h:outputLabel for="phone" class="sr-only">Telefono</h:outputLabel>
-                            <h:inputTextarea id="phone" class="form-control" p:placeholder="Teléfono"></h:inputTextarea>
+                            <h:outputLabel for="subject" class="sr-only">Asunto</h:outputLabel>
+                            <h:inputTextarea id="subject" value="#{sendEmailBean.mail.subject}" class="form-control" p:placeholder="Asunto"></h:inputTextarea>
                         </div>
                         <div class="form-group ">
                             <label for="message" class="sr-only">Mensaje</label>
-                            <h:inputTextarea id="message" cols="30" rows="5" class="form-control" p:placeholder="Escriba pregunta"></h:inputTextarea>
+                            <h:inputTextarea id="message" value="#{sendEmailBean.mail.mensaje}" cols="30" rows="5" class="form-control" p:placeholder="Escriba pregunta"></h:inputTextarea>
                         </div>
                         <div class="form-group ">
-                            <h:commandButton class="btn btn-primary btn-lg" value="Enviar Mensaje"/>
+                            <h:commandButton class="btn btn-primary btn-lg" value="Enviar Mensaje" action="#{sendEmailBean.doSendMail()}" />
                         </div>
                         </h:form>
                     </div>
