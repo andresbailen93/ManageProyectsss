@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
           <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -38,21 +39,22 @@
           </div>
 
           
-
+          <h:form>
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
+            <li class="header">Mis Proyectos</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="#">Link in level 2</a></li>
-                <li><a href="#">Link in level 2</a></li>
-              </ul>
-            </li>
+            <ui:repeat value="#{projectListBean.list}" var="project">
+            <li>
+                    <h:commandLink id="addProject" action="addProject.xhtml">
+                        <span class="fa fa-link"></span>
+                           #{project.name}
+                    </h:commandLink>
+                </li>
+            
+            </ui:repeat>
           </ul><!-- /.sidebar-menu -->
+          </h:form>
         </section>
         <!-- /.sidebar -->
       </aside>

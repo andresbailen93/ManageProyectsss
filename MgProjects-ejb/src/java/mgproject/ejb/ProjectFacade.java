@@ -39,4 +39,12 @@ public class ProjectFacade extends AbstractFacade<Project> {
         return list;
     }
     
+    public List<Project> findByUser(Users u){
+        
+        Query query = em.createQuery("SELECT p FROM Project p WHERE p.idAdmin = :u")
+                .setParameter("u", u);
+        List<Project> list = query.getResultList();
+        return list;
+    }
+    
 }
