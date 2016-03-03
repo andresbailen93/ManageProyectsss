@@ -175,18 +175,14 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <h:graphicImage alt="User Image" url="#{loginBean.urlImage}" class="user-circle"/>
-
+                                <h:graphicImage alt="User Image" url="#{loginBean.urlImage}" class="user-image" />
                                 <h:outputLabel><h:outputText class="hidden-xs" value="#{loginBean.nickName}"/></h:outputLabel>
-
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="themes/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-                                    <h:graphicImage alt="User Image" url="#{loginBean.urlImage}" class="img-circle"/>
 
-                                    <h:graphicImage alt="User Image" url="#{loginBean.urlImage}" class="img-circle"/>
+                                    <h:graphicImage alt="User Image" url="#{loginBean.urlImage}" class="img-circle" width="160" height="160"/>
                                     <p>
                                         <h:outputText class="hidden-xs" value="#{loginBean.nickName}"/>
                                     </p>
