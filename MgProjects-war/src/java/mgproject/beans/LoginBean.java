@@ -32,13 +32,30 @@ public class LoginBean implements Serializable {
     @EJB
     private UsersFacade usersFacade;
 
-    
     private String idUser;
     private String nickName;
     private String urlImage;
     private String payload;
     private String email;
     private boolean singIn = false;
+    
+    private String depuracion = " ";
+
+    public UsersFacade getUsersFacade() {
+        return usersFacade;
+    }
+
+    public void setUsersFacade(UsersFacade usersFacade) {
+        this.usersFacade = usersFacade;
+    }
+
+    public String getDepuracion() {
+        return depuracion;
+    }
+
+    public void setDepuracion(String depuracion) {
+        this.depuracion = depuracion;
+    }
 
     public boolean isSingIn() {
         return singIn;
@@ -103,6 +120,19 @@ public class LoginBean implements Serializable {
 
     public String doLogin(){
         Users user = usersFacade.find(this.idUser);
+        
+        if( user == null ){
+            Users newUser = new Users();
+            newUser.setIdUser(this.idUser);
+            newUser.setNick(this.nickName);
+            newUser.setUrlImage(this.urlImage);
+            usersFacade.create(newUser);
+        }else{
+            user.setIdUser(this.idUser);
+            user.setNick(this.nickName);
+            user.setUrlImage(this.urlImage);
+        }
+        
         return "profile";
     }
 
