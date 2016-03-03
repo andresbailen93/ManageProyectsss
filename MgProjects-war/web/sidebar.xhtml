@@ -34,7 +34,7 @@
             <div class="pull-left info">
                   <h:outputLabel><h:outputText class="hidden-xs" value="#{loginBean.nickName}"/></h:outputLabel>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+             
             </div>
           </div>
 
@@ -42,6 +42,12 @@
           <h:form>
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
+              <li>
+                    <h:commandLink id="addProject" action="addProject.xhtml">
+                        <span class="fa fa-plus"></span>
+                        <h:outputText value="  Nuevo Proyecto"/>
+                    </h:commandLink>
+                </li>
             <li class="header">Mis Proyectos</li>
             <!-- Optionally, you can add icons to the links -->
             <ui:repeat value="#{loginBean.project_list}" var="project">
@@ -49,11 +55,11 @@
                     <h:commandLink id="addProject" action="addProject.xhtml">
                         <span class="fa fa-link"></span>
                            #{project.name}
-                    </h:commandLink>
-                </li>
-            
-            </ui:repeat>
-          </ul><!-- /.sidebar-menu -->
+                          </h:commandLink>
+                      </li>
+
+                  </ui:repeat>
+              </ul><!-- /.sidebar-menu -->
           </h:form>
         </section>
         <!-- /.sidebar -->
