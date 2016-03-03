@@ -5,18 +5,11 @@
  */
 package mgproject.beans;
 
-import java.util.Date;
-import java.util.Properties;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import mgproject.util.mail.Mail;
 
 /**
@@ -24,7 +17,7 @@ import mgproject.util.mail.Mail;
  * @author Paloma
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class SendEmailBean {
 
     @EJB
