@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:m="http://code.google.com/p/gmaps4jsf/">
     <h:head>
         <meta charset="UTF-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -361,7 +362,15 @@
                     </div>
                 </div>
             </div>
-            <div id="map" class="to-animate"></div>
+            <div id="map" class="to-animate">
+                <script type="text/javascript"
+                           src="https://maps.googleapis.com/maps/api/js?sensor=true"/>
+                        <h:form id="form">
+                            <m:map width="100%" height="500px" latitude="36.7173748" longitude="-4.4729741" zoom="16" enableScrollWheelZoom="true">
+                                
+                            </m:map>
+                        </h:form>
+            </div>
         </section>
 
 
@@ -370,7 +379,8 @@
             <div class="container">
                 <div class="">
                     <div class="col-md-12 text-center">
-                        <p>TodoManage. All Rights Reserved.</p>
+                        
+                        <p>Copyright &copy; 2016 - Máster INFTEL - TodoManage</p>
 
                     </div>
                 </div>
@@ -405,10 +415,7 @@
         <!-- Magnific Popup -->
         <script src="themes/js/jquery.magnific-popup.min.js"/>
         <script src="themes/js/magnific-popup-options.js"/>
-        <!-- Google Map -->
-        <script type="text/javascript" 
-        src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-        <script src="themes/js/google_map.js"/>
+        
 
         <!-- For demo purposes only styleswitcher ( You may delete this anytime ) -->
         <script src="themes/js/jquery.style.switcher.js"/>
