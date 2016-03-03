@@ -17,7 +17,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import mgproject.ejb.Mail;
+import mgproject.util.mail.Mail;
 
 /**
  *
@@ -26,49 +26,52 @@ import mgproject.ejb.Mail;
 @ManagedBean
 @SessionScoped
 public class SendEmailBean {
+
     @EJB
     private Mail mail;
-    
-    
+
+    private String message;
+    private String subject;
+    private String name;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     /**
      * Creates a new instance of sendEmailBean
      */
     public SendEmailBean() {
     }
-    
-    public String doSendMail() throws MessagingException {
-        Properties props = new Properties();
-        
-        props.put("mail.debug", "true");
-        props.put("mail.smtp.auth", true);
-        props.put("mail.smtp.starttls.enable", true);
-        props.put("mail.smtp.host", mail.getServidorSMTP());
-        props.put("mail.smtp.port", mail.getPuerto());
-        
-        Session session = Session.getInstance(props, null);
-        
-        
-        
-        MimeMessage message = new MimeMessage(session);
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(mail.getDestiny()));
-        message.setSubject(mail.getSubject());
-        message.setSentDate(new Date());
-        message.setText(mail.getMensaje());
-        
-        Transport tr = session.getTransport("smtp");
-        tr.connect(mail.getServidorSMTP(), mail.getUsuario(), mail.getPassword());
-        message.saveChanges();
-        tr.sendMessage(message, message.getAllRecipients());
-        tr.close();
-        
-        
-        
-        
-        return "";
-        
-    }
 
+    public void doSendMail() throws MessagingException {
+        mail = new Mail(mail.getDestiny(), subject, "El mensaje :" + "" + message + "ha sido enviado por el usurio :" + "" + name);
+        mail.sendMail();
+        name = "";
+        message = "";
+        subject = "";
+
+    }
 
     public Mail getMail() {
         return mail;
@@ -77,6 +80,5 @@ public class SendEmailBean {
     public void setMail(Mail mail) {
         this.mail = mail;
     }
-    
-    
+
 }
