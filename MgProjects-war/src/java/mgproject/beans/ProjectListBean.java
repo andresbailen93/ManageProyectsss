@@ -9,8 +9,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import mgproject.ejb.ProjectFacade;
 import mgproject.entities.Project;
 import mgproject.entities.Users;
@@ -21,7 +22,7 @@ import mgproject.entities.Users;
  */
 @ManagedBean
 @RequestScoped
-public class projectListBean {
+public class ProjectListBean {
 
     @EJB
     private ProjectFacade projectFacade;
@@ -48,7 +49,7 @@ public class projectListBean {
     /**
      * Creates a new instance of projectListBean
      */
-    public projectListBean() {
+    public ProjectListBean() {
     }
     
 }

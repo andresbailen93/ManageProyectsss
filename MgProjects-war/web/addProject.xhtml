@@ -6,24 +6,24 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Manage Projects</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="themes/bootstrap/css/bootstrap.min.css"/>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
-    <!-- Theme style -->
-    <link rel="stylesheet" href="themes/dist/css/AdminLTE.min.css"/>
-    
-    <link rel="stylesheet" href="themes/dist/css/skins/skin-blue.min.css"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>Manage Projects</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="themes/bootstrap/css/bootstrap.min.css"/>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+        <!-- Theme style -->
+        <link rel="stylesheet" href="themes/dist/css/AdminLTE.min.css"/>
+
+        <link rel="stylesheet" href="themes/dist/css/skins/skin-blue.min.css"/>
     </h:head>
-    
+
     <h:body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
+        <div class="wrapper">
 
       <div id="header">
             <ui:insert name="header">
@@ -35,84 +35,88 @@
           <ui:include src="sidebar.xhtml"/>
       </ui:insert>
 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Nuevo Proyecto
-            
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-          </ol>
-            
-               <div class="panel-body">
+            <ui:insert name="header">
+                <ui:include src="sidebar.xhtml"/>
+            </ui:insert>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Nuevo Proyecto
+
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active">Here</li>
+                    </ol>
+
+                    <div class="panel-body">
 
                         <!-- AddTest FORM -->
                         <h:form>
                             <div class="form-group ">
 
                                 <h:outputText value="Ya existe un proyecto con ese nombre" rendered="#{addProjectBean.error}" class="alert alert-danger center-block small-margin"/>
-                                
-                                    <label>Nombre del Proyecto:</label>
-                                    <h:inputText id="projectname" class="form-control"  value="#{addProjectBean.name}" required="true">
-                                        <f:validateLength minimum="3" maximum="100"/>
-                                    </h:inputText>                      
-                                </div>
-                                <div class="form-group">
-                                    <label>Descripcion:</label>
-                                    <h:inputTextarea id="descripcion" class="form-control" rows="5"  value="#{addProjectBean.desc}"></h:inputTextarea>
-                                </div>
+
+                                <label>Nombre del Proyecto:</label>
+                                <h:inputText id="projectname" class="form-control"  value="#{addProjectBean.name}" required="true">
+                                    <f:validateLength minimum="3" maximum="100"/>
+                                </h:inputText>                      
+                            </div>
+                            <div class="form-group">
+                                <label>Descripcion:</label>
+                                <h:inputTextarea id="descripcion" class="form-control" rows="5"  value="#{addProjectBean.desc}"></h:inputTextarea>
+                            </div>
 
 
-      
 
-                                <div class="form-group">
-                                    <label>Administrador</label>
-                                    <h:inputText id="autor" class="form-control"  value="#{addProjectBean.admin.nick}" readonly="true">
-                                    </h:inputText>                              
-                                </div>
+
+                            <div class="form-group">
+                                <label>Administrador</label>
+                                <h:inputText id="autor" class="form-control"  value="#{addProjectBean.admin.nick}" readonly="true">
+                                </h:inputText>                              
+                            </div>
                             <h:commandButton  class="btn btn-primary btn-md" action="#{addProjectBean.doAddProject()}" value="Añadir Proyecto"/>
                         </h:form>
-               </div>
-        </section>
+                    </div>
+                </section>
 
-        <!-- Main content -->
-        <section class="content">
+                <!-- Main content -->
+                <section class="content">
 
-          <!-- Your Page Content Here -->
+                    <!-- Your Page Content Here -->
 
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
 
-      <!-- Main Footer -->
-      <footer class="main-footer">
-        <!-- To the right -->
-        <div class="pull-right hidden-xs">
-          Version 1.1.1
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
-      </footer>
+            <!-- Main Footer -->
+            <footer class="main-footer">
+                <!-- To the right -->
+                <div class="pull-right hidden-xs">
+                    Version 1.1.1
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
+            </footer>
 
-      
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      
-    </div><!-- ./wrapper -->
 
-    <!-- REQUIRED JS SCRIPTS -->
+            <!-- Add the sidebar's background. This div must be placed
+                 immediately after the control sidebar -->
 
-    <!-- jQuery 2.1.4 -->
-    <script src="themes/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="themes/bootstrap/js/bootstrap.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="themes/dist/js/app.min.js"></script>
+        </div><!-- ./wrapper -->
 
-  
+        <!-- REQUIRED JS SCRIPTS -->
+
+        <!-- jQuery 2.1.4 -->
+        <script src="themes/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="themes/bootstrap/js/bootstrap.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="themes/dist/js/app.min.js"></script>
+
+
     </h:body>
 </html>
 
