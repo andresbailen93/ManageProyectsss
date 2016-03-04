@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author andresbailen93
+ * @author inftel22
  */
 @Entity
 @Table(name = "CHAT")
@@ -30,7 +30,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Chat.findAll", query = "SELECT c FROM Chat c"),
     @NamedQuery(name = "Chat.findByIdChat", query = "SELECT c FROM Chat c WHERE c.idChat = :idChat")})
 public class Chat implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -108,7 +107,7 @@ public class Chat implements Serializable {
 
     @Override
     public String toString() {
-        return "entitis.ejb.Chat[ idChat=" + idChat + " ]";
+        return "mgproject.entities.Chat[ idChat=" + idChat + " ]";
     }
     
 }

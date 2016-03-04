@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author andresbailen93
+ * @author inftel22
  */
 @Entity
 @Table(name = "USERS")
@@ -32,9 +32,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
     @NamedQuery(name = "Users.findByIdUser", query = "SELECT u FROM Users u WHERE u.idUser = :idUser"),
     @NamedQuery(name = "Users.findByNick", query = "SELECT u FROM Users u WHERE u.nick = :nick"),
-    @NamedQuery(name = "Users.findByUrlImage", query = "SELECT u FROM Users u WHERE u.urlImage = :urlImage")})
+    @NamedQuery(name = "Users.findByUrlImage", query = "SELECT u FROM Users u WHERE u.urlImage = :urlImage"),
+    @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email")})
 public class Users implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -50,6 +50,10 @@ public class Users implements Serializable {
     @Size(max = 255)
     @Column(name = "URL_IMAGE")
     private String urlImage;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 140)
+    @Column(name = "EMAIL")
+    private String email;
     @ManyToMany(mappedBy = "usersCollection")
     private Collection<Project> projectCollection;
     @ManyToMany(mappedBy = "usersCollection")
@@ -91,6 +95,14 @@ public class Users implements Serializable {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @XmlTransient
@@ -142,7 +154,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "entitis.ejb.Users[ idUser=" + idUser + " ]";
+        return "mgproject.entities.Users[ idUser=" + idUser + " ]";
     }
     
 }
