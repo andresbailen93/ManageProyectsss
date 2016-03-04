@@ -8,6 +8,7 @@ package mgproject.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,7 +43,7 @@ public class Project implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(generator="PROJECT_SEQUENCE") 
+        @GeneratedValue(generator="PROJECT_SEQUENCE") 
     @SequenceGenerator(name="PROJECT_SEQUENCE",sequenceName="project_seq", allocationSize=1)
     @Basic(optional = false)
     @NotNull
@@ -64,7 +65,7 @@ public class Project implements Serializable {
     @JoinColumn(name = "ID_ADMIN", referencedColumnName = "ID_USER")
     @ManyToOne
     private Users idAdmin;
-    @OneToMany(mappedBy = "idProject")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProject")
     private Collection<Task> taskCollection;
     @OneToMany(mappedBy = "idProject")
     private Collection<Chat> chatCollection;
@@ -162,7 +163,7 @@ public class Project implements Serializable {
 
     @Override
     public String toString() {
-        return "entitis.ejb.Project[ idProject=" + idProject + " ]";
+        return "mgproject.entites.Project[ idProject=" + idProject + " ]";
     }
     
 }

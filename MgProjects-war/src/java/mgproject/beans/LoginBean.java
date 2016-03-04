@@ -44,19 +44,27 @@ public class LoginBean implements Serializable {
     private String urlImage;
     private String payload;
     private String email;
-    private boolean singIn = false;
+    private boolean singIn;
     private List<Project> project_list;
-    private Project newProject;
+    private Project project;
+
+    public ProjectFacade getProjectFacade() {
+        return projectFacade;
+    }
+
+    public void setProjectFacade(ProjectFacade projectFacade) {
+        this.projectFacade = projectFacade;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }    
+
     
-    private String depuracion = " ";
-
-    public Project getNewProject() {
-        return newProject;
-    }
-
-    public void setNewProject(Project newProject) {
-        this.newProject = newProject;
-    }
 
     
     public List<Project> getProject_list() {
@@ -73,14 +81,6 @@ public class LoginBean implements Serializable {
 
     public void setUsersFacade(UsersFacade usersFacade) {
         this.usersFacade = usersFacade;
-    }
-
-    public String getDepuracion() {
-        return depuracion;
-    }
-
-    public void setDepuracion(String depuracion) {
-        this.depuracion = depuracion;
     }
 
     public boolean isSingIn() {
@@ -136,6 +136,7 @@ public class LoginBean implements Serializable {
 
     public void init() {
         if (this.idUser == null) {
+            this.singIn = false;
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
             } catch (IOException ex) {
@@ -157,11 +158,24 @@ public class LoginBean implements Serializable {
             user.setIdUser(this.idUser);
             user.setNick(this.nickName);
             user.setUrlImage(this.urlImage);
+            usersFacade.edit(user);
         }
-        
+        this.singIn = true;
         this.project_list = projectFacade.findByUser(user);
         
-        return "profile";
+        return "index";
     }
+    public String doLogout() {
+        this.singIn = false;
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "index";
+    }	
+    
+    public String doRedirectToProject(Project project){
+        this.project = project;
+        System.out.println(project.getName());
+        return "project";
+    }
+    
 
 }

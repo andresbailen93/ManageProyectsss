@@ -192,7 +192,7 @@ public class AddProjectBean {
             
 
             projectFacade.create(project);
-            loginBean.setNewProject(project);
+            loginBean.setProject(project);
             exito=true;
              return "addProject";
         }else{
@@ -207,7 +207,7 @@ public class AddProjectBean {
         colaborador = usersFacade.find(IdColaborador);
         admin = usersFacade.find(loginBean.getIdUser());
 
-        project = loginBean.getNewProject();
+        project = loginBean.getProject();
         if (project == null) {
             error2 = true;
         } else {

@@ -54,6 +54,9 @@
             /* For demo purpose only */
 
             /* For Demo Purposes Only ( You can delete this anytime :-) */
+            #perfil-navbar{
+                margin-top: 14px;
+            }
             #colour-variations {
                 padding: 10px;
                 -webkit-transition: 0.5s;
@@ -183,19 +186,6 @@
 
             }
             ;
-
-            function signOut() {
-                var auth2 = gapi.auth2.getAuthInstance();
-                auth2.signOut().then(function () {
-                    console.log('User signed out.');
-                    document.getElementById('loginForm:hiddenImage').value = " ";
-                    document.getElementById('loginForm:hiddenMail').value = " ";
-                    document.getElementById('loginForm:hiddenNick').value = " ";
-                    document.getElementById('loginForm:hiddenId').value = " ";
-                    document.getElementById('loginForm:hiddenToken').value = " ";
-                });
-            }
-            ;
         </script>
 
     </h:head>
@@ -207,7 +197,7 @@
                     <div class="navbar-header">
                         <!-- Mobile Toggle Menu Button -->
                         <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                        <a class="navbar-brand" href="index_.html">TodoManage</a> 
+                        <a class="navbar-brand" href="index_.html">ManagedProject</a> 
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -215,8 +205,14 @@
                             <li><a href="#" data-nav-section="services"><span>Servicios</span></a></li>
                             <li><a href="#" data-nav-section="about"><span>Conócenos</span></a></li>
                             <li><a href="#" data-nav-section="contact"><span>Contacta con nosotros</span></a></li>
-                            <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></li>
-                            <li><a href="#" onclick="signOut();">Sign out</a></li>
+                            <li>
+                                <h:form rendered="#{!loginBean.singIn}">
+                                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                                </h:form>
+                                <h:form rendered="#{loginBean.singIn}">
+                                    <h:commandLink action="profile.xhtml" rendered="#{loginBean.singIn}"><span style="margin-top: 14px;">Perfil</span></h:commandLink>
+                                </h:form>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -224,7 +220,7 @@
             </div>
         </header>
 
-        <h:form id="loginForm">
+        <h:form id="loginForm" rendered="#{!loginBean.singIn}">
             <h:inputHidden id="hiddenId" value="#{loginBean.idUser}"/>
             <h:inputHidden id="hiddenNick" value="#{loginBean.nickName}"/>
             <h:inputHidden id="hiddenMail" value="#{loginBean.email}"/>
@@ -385,7 +381,7 @@
                             </li>
                             <li><i class="icon-phone"></i> +34 689316792</li>
                             <li><i class="icon-envelope"></i>xiiinftel@gmail.com</li>
-                            <li><i class="icon-globe"></i> <a href="#">todomanage.com</a></li>
+                            <li><i class="icon-globe"></i> <a href="#">managedproject.com</a></li>
                         </ul>
                     </div>
 
@@ -429,7 +425,7 @@
                 <div class="">
                     <div class="col-md-12 text-center">
 
-                        <p>Copyright &copy; 2016 - Máster INFTEL - TodoManage</p>
+                        <p>Copyright &copy; 2016 - Máster INFTEL - ManagedProject</p>
 
                     </div>
                 </div>
