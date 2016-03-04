@@ -46,9 +46,19 @@ public class LoginBean implements Serializable {
     private String email;
     private boolean singIn = false;
     private List<Project> project_list;
+    private Project newProject;
     
     private String depuracion = " ";
 
+    public Project getNewProject() {
+        return newProject;
+    }
+
+    public void setNewProject(Project newProject) {
+        this.newProject = newProject;
+    }
+
+    
     public List<Project> getProject_list() {
         return project_list;
     }

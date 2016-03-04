@@ -58,6 +58,9 @@
                             <div class="form-group ">
 
                                 <h:outputText value="Ya existe un proyecto con ese nombre" rendered="#{addProjectBean.error}" class="alert alert-danger center-block small-margin"/>
+                                <h:outputText value="Usuario invitado correctamente" rendered="#{addProjectBean.invitacion}" class="alert alert-success center-block small-margin"/>
+                                <h:outputText value="Proyecto creado correctamente" rendered="#{addProjectBean.exito}" class="alert alert-success center-block small-margin"/>
+                                <h:outputText value="Debe insertar un proyecto" rendered="#{addProjectBean.error2}" class="alert alert-danger center-block small-margin"/>
 
                                 <label>Nombre del Proyecto:</label>
                                 <h:inputText id="projectname" class="form-control"  value="#{addProjectBean.name}" required="true">
@@ -73,12 +76,33 @@
 
 
                             <div class="form-group">
-                                <label>Administrador</label>
-                                <h:inputText id="autor" class="form-control"  value="#{addProjectBean.admin.nick}" readonly="true">
+                                <label>Administrador:</label>
+                                <h:inputText id="autor" class="form-control"  value="#{addProjectBean.loginBean.nickName}" readonly="true">
                                 </h:inputText>                              
                             </div>
+                  
                             <h:commandButton  class="btn btn-primary btn-md" action="#{addProjectBean.doAddProject()}" value="Añadir Proyecto"/>
                         </h:form>
+                        <br/>
+                        <h:form>
+                            <div class="form-group">
+                                <label>Colaboradores:</label>
+                                <div>
+                                    <h:selectOneMenu id="colaborador" value="#{addProjectBean.idColaborador}" class="form-control">
+                                        <f:selectItems value="#{addProjectBean.list_colaborador}" var="colaborador" itemValue="#{colaborador.idUser}" itemLabel="#{colaborador.nick}"></f:selectItems>
+                                    </h:selectOneMenu>
+                                </div>
+                                
+                                </div>
+                                <h:commandButton value="Invitar usuario" action="#{addProjectBean.doInvitar()}" class="btn btn-primary btn-md"/>
+                                
+                            
+                            
+                        </h:form>
+                        
+                        
+                        
+                        
                     </div>
                 </section>
 
