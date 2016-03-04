@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import mgproject.entities.Project;
 import mgproject.entities.Task;
 
 /**
@@ -28,5 +29,9 @@ public class TaskFacade extends AbstractFacade<Task> {
     public TaskFacade() {
         super(Task.class);
     }
-
+public List<Task> findTaskByProjectUser(Project project){
+    List<Task> lista_task;
+    lista_task = em.createNamedQuery("Task.findByProjectUser").setParameter("idproject", project).getResultList();
+    return lista_task;
+}
 }
