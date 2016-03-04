@@ -161,11 +161,14 @@
                   </ul>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix no-border">
-                    <h:inputText class="btn btn-default pull-right" onclick="showAddItem()" value="Nueva tarea" />
+                    <h:form>
+                        <h:inputText class="btn btn-default pull-right" onclick="showAddItem()" value="Nueva tarea" />
+                    </h:form>
                 </div>
                 <div class="box-body" id="addNewItem" style="display:none">
-                  <form action="#" method="post">
+                  <h:form>
                     <div class="form-group">
+                            
                         <h:inputText class="form-control" a:placeholder="Nombre de la tarea" />
                     </div>
                     <div class="form-group" style="width: 49.6%; display: inline-block">
@@ -201,7 +204,7 @@
                     <div class="box-footer clearfix">
                       <input type="button" class="btn btn-default pull-right" value="Crear" />
                     </div>
-                  </form>
+                  </h:form>
                 </div>
               </div><!-- /.box -->
 
