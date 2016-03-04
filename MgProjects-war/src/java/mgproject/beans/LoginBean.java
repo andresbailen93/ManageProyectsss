@@ -139,6 +139,7 @@ public class LoginBean implements Serializable {
             user.setIdUser(this.idUser);
             user.setNick(this.nickName);
             user.setUrlImage(this.urlImage);
+            usersFacade.edit(user);
         }
         this.singIn = true;
         this.project_list = projectFacade.findByUser(user);
