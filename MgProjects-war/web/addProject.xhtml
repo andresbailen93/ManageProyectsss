@@ -24,20 +24,87 @@
 
     <h:body class="hold-transition skin-blue sidebar-mini">
         
-        <div id="header">
+      <div id="header">
             <ui:insert name="header">
                 <ui:include src="navbar.xhtml"/>
             </ui:insert>
         </div>
      
-        <ui:insert>
-            <ui:include src="sidebar.xhtml"/>
-        </ui:insert>
+      <ui:insert>
+          <ui:include src="sidebar.xhtml"/>
+      </ui:insert>
+
+            <ui:insert name="header">
+                <ui:include src="sidebar.xhtml"/>
+            </ui:insert>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Nuevo Proyecto
+
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active">Here</li>
+                    </ol>
+
+                    <div class="panel-body">
+
+                        <!-- AddTest FORM -->
+                        <h:form>
+                            <div class="form-group ">
+
+                                <h:outputText value="Ya existe un proyecto con ese nombre" rendered="#{addProjectBean.error}" class="alert alert-danger center-block small-margin"/>
+
+                                <label>Nombre del Proyecto:</label>
+                                <h:inputText id="projectname" class="form-control"  value="#{addProjectBean.name}" required="true">
+                                    <f:validateLength minimum="3" maximum="100"/>
+                                </h:inputText>                      
+                            </div>
+                            <div class="form-group">
+                                <label>Descripcion:</label>
+                                <h:inputTextarea id="descripcion" class="form-control" rows="5"  value="#{addProjectBean.desc}"></h:inputTextarea>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label>Administrador</label>
+                                <h:inputText id="autor" class="form-control"  value="#{addProjectBean.admin.nick}" readonly="true">
+                                </h:inputText>                              
+                            </div>
+                            <h:commandButton  class="btn btn-primary btn-md" action="#{addProjectBean.doAddProject()}" value="Añadir Proyecto"/>
+                        </h:form>
+                    </div>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+
+                    <!-- Your Page Content Here -->
+
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
+
+            <!-- Main Footer -->
+            <footer class="main-footer">
+                <!-- To the right -->
+                <div class="pull-right hidden-xs">
+                    Version 1.1.1
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
+            </footer>
 
 
             <!-- Add the sidebar's background. This div must be placed
                  immediately after the control sidebar -->
 
+        <!-- ./wrapper -->
 
         <!-- REQUIRED JS SCRIPTS -->
 
@@ -51,7 +118,3 @@
 
     </h:body>
 </html>
-
-
-
-        <!-- ./wrapper -->
