@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-var socket = new WebSocket("ws://localhost:8080/MgProjects-war/actions");
+var idProject = document.getElementById("id_project").value;
+var socket = new WebSocket("ws://localhost:8080/MgProjects-war/actions/"+idProject);
 socket.onmessage = onMessage;
 
 function stopRKey(evt) { 
@@ -40,6 +41,9 @@ function printMessageElement(message) {
     content.appendChild(messageDiv);
 
     var userImage = document.createElement("img");
+    var form = document.getElementById("addMessageChat");
+    var urlImage = form.elements["url_image"].value;
+    userImage.setAttribute("src", urlImage);
     userImage.setAttribute("class", "offline");   
     userImage.setAttribute("alt", "user image");     
     messageDiv.appendChild(userImage);
@@ -58,7 +62,7 @@ function printMessageElement(message) {
 function chatSubmit() {
     var form = document.getElementById("addMessageChat");
     form.scrollTop = form.scrollHeight;
-    var user = "Guillermo Galiano";
+    var user = form.elements["nick_user"].value;
     var description = form.elements["message_description"].value; 
     if (description !== "") {
         document.getElementById("addMessageChat").reset();

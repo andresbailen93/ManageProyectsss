@@ -202,13 +202,11 @@ public class LoginBean implements Serializable {
             newUser.setIdUser(this.idUser);
             newUser.setNick(this.nickName);
             newUser.setUrlImage(this.urlImage);
-            newUser.setEmail(this.email);
             usersFacade.create(newUser);
         }else{
             user.setIdUser(this.idUser);
             user.setNick(this.nickName);
             user.setUrlImage(this.urlImage);
-            user.setEmail(this.email);
             usersFacade.edit(user);
         }
         this.singIn = true;

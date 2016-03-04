@@ -46,15 +46,299 @@
     <h:body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
 
-            <ui:insert name="header">
-                <ui:include src="navbar.xhtml"/>
-            </ui:insert>
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                #{managedProjectBean.loginBean.project.name}
+                <small>Panel de control</small>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-red">
+                <div class="inner">
+                  <h3>
+                      #{managedProjectBean.loginBean.taskAcu}
+                  </h3>
+                  <p>Acuciantes</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-hourglass-o"></i>
+                </div>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h3>#{managedProjectBean.loginBean.taskRep}</h3>
+                  <p>Repentinas</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-hourglass-end"></i>
+                </div>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h3>#{managedProjectBean.loginBean.taskPln}</h3>
+                  <p>Planificadas</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-hourglass-half    "></i>
+                </div>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>#{managedProjectBean.loginBean.taskAcc}</h3>
+                  <p>Accesorias</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-hourglass"></i>
+                </div>
+              </div>
+            </div><!-- ./col -->
+          </div><!-- /.row -->
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+              <!-- Custom tabs (Charts with tabs)-->
+              
+              <!-- Description -->
+              <div class="box box-comments">
+                <div class="box-header">
+                  <i class="fa fa-sort-amount-desc"></i>
+                  <h3 class="box-title">Descripción del proyecto</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">                  
+                    #{managedProjectBean.loginBean.project.description}
+                </div>
+              </div>
+              
+               <!-- TO DO List -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <i class="ion ion-clipboard"></i>
+                  <h3 class="box-title">To Do List</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <ul class="todo-list">
+                    <li>
+                      <!-- drag handle -->
+                      <span class="handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                      <!-- todo text -->
+                      <span class="text">Do tasks layout (javascript, beans and xhtml)</span>
+                      <!-- Emphasis label -->
+                      <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                      <!-- General tools such as edit or delete-->
+                      <div class="tools">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-trash-o"></i>
+                      </div>
+                    </li>
+                  </ul>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix no-border">
+                    <h:form>
+                        <h:inputText class="btn btn-default pull-right" onclick="showAddItem()" value="Nueva tarea" />
+                    </h:form>
+                </div>
+                <div class="box-body" id="addNewItem" style="display:none">
+                  <h:form>
+                    <div class="form-group">
+                            
+                        <h:inputText class="form-control" a:placeholder="Nombre de la tarea" />
+                    </div>
+                    <div class="form-group" style="width: 49.6%; display: inline-block">
+                        <h:inputText class="form-control" a:placeholder="Tiempo" />
+                    </div>
+                    <div class="form-group" style="width: 50%; display: inline-block">
+                        <h:selectOneMenu id="timeTask" class="form-control" value="" >
+                            <f:selectItem itemLabel="Unidad de tiempo" itemValue="default" />
+                            <f:selectItem itemLabel="Minutos" itemValue="mins" />
+                            <f:selectItem itemLabel="Horas" itemValue="hours" />
+                            <f:selectItem itemLabel="Días" itemValue="days" />
+                            <f:selectItem itemLabel="weeks" itemValue="weeks" />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group" style="width: 49.6%; display: inline-block">
+                        <h:selectOneMenu id="priorityTask" class="form-control" value="">
+                            <f:selectItem itemLabel="Prioridad" itemValue="default" />
+                            <f:selectItem itemLabel="Acuciante" itemValue="acuciante" />
+                            <f:selectItem itemLabel="Repentino" itemValue="repentino" />
+                            <f:selectItem itemLabel="Planificación" itemValue="plani" />
+                            <f:selectItem itemLabel="accesorio" itemValue="accesorio" />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group" style="width: 50%; display: inline-block">
+                        <h:selectOneMenu id="taskTo" class="form-control" value="">
+                            <f:selectItem itemLabel="Asignar a:" itemValue="default" />
+                            <f:selectItem itemLabel="Alex" itemValue="0" />
+                            <f:selectItem itemLabel="Andrés" itemValue="1" />
+                            <f:selectItem itemLabel="Guillermo" itemValue="2" />
+                            <f:selectItem itemLabel="Paloma" itemValue="3" />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="box-footer clearfix">
+                      <input type="button" class="btn btn-default pull-right" value="Crear" />
+                    </div>
+                  </h:form>
+                </div>
+              </div><!-- /.box -->
+
+              
+
+              
+              <!-- quick email widget -->
+              <div class="box box-info">
+                <div class="box-header">
+                  <i class="fa fa-envelope"></i>
+                  <h3 class="box-title">Email</h3>
+                </div>
+                <div class="box-body">
+                  <h:form>
+                    <div class="form-group">
+                        <h:inputTextarea value="#{sendEmailToBean.emailto}" class="form-control" id="emailto" a:placeholder="Email to:"/>
+                    </div>
+                    <div class="form-group">
+                      <h:inputTextarea value="#{sendEmailToBean.subject}" class="form-control" id="subject" a:placeholder="Asunto"/>
+                    </div>
+                    <div>
+                        <h:inputTextarea value="#{sendEmailToBean.message}" class="textarea" a:placeholder="Mensaje" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"/>
+                    </div>
+                      <div class="box-footer clearfix">
+                        <h:commandButton action="#{sendEmailToBean.doSendEmailTo()}" class="pull-right btn btn-default" id="sendEmail" value="Enviar"/>
+                    </div>
+                  </h:form>
+                </div>
+              </div>
+
+            </section><!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <section class="col-lg-5 connectedSortable">
+
+              
+             <!-- Chat box -->
+              <div class="box box-success">
+                <div class="box-header">
+                  <i class="fa fa-comments-o"></i>
+                  <h3 class="box-title">Chat</h3>
+                </div>
+                <div class="box-body chat" id="chat-box">
+                </div><!-- /.chat -->
+                <input type="hidden" class="form-control" name="id_project" id="id_project" value="#{managedProjectBean.loginBean.project.idProject}" />
+                <form id="addMessageChat">
+                    <div class="box-footer">
+                      <div class="input-group">
+                        <input type="hidden" class="form-control" name="url_image" id="url_image" value="#{managedProjectBean.loginBean.urlImage}" />
+                        <input type="hidden" class="form-control" name="nick_user" id="nick_user" value="#{managedProjectBean.loginBean.nickName}" />
+                        <input class="form-control" name="message_description" id="message_description" placeholder="Escribe un mensaje..." />
+                        <div class="input-group-btn">
+                          <input type="button" value="Send" class="btn btn-success" id="chatButton" onclick="chatSubmit()" />
+                        </div>
+                      </div>
+                    </div>
+                </form>
+              </div><!-- /.box (chat box) -->
+
+              <!-- Calendar -->
+              <div class="box box-solid bg-green-gradient">
+                <div class="box-header">
+                  <i class="fa fa-calendar"></i>
+                  <h3 class="box-title">Calendar</h3>
+                  <!-- tools box -->
+                  <div class="pull-right box-tools">
+                    <!-- button with a dropdown -->
+                    <div class="btn-group">
+                      <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+                      <ul class="dropdown-menu pull-right" role="menu">
+                        <li><a href="#">Add new event</a></li>
+                        <li><a href="#">Clear events</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">View calendar</a></li>
+                      </ul>
+                    </div>
+                    <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div><!-- /. tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <!--The calendar -->
+                  <div id="calendar" style="width: 100%"></div>
+                </div><!-- /.box-body -->
+                <div class="box-footer text-black">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- Progress bars -->
+                      <div class="clearfix">
+                        <span class="pull-left">Task #1</span>
+                        <small class="pull-right">90%</small>
+                      </div>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                      </div>
+
+                      <div class="clearfix">
+                        <span class="pull-left">Task #2</span>
+                        <small class="pull-right">70%</small>
+                      </div>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                      </div>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                      <div class="clearfix">
+                        <span class="pull-left">Task #3</span>
+                        <small class="pull-right">60%</small>
+                      </div>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+                      </div>
+
+                      <div class="clearfix">
+                        <span class="pull-left">Task #4</span>
+                        <small class="pull-right">40%</small>
+                      </div>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+                      </div>
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div>
+              </div><!-- /.box -->
+             
 
 
             <!-- Left side column. contains the logo and sidebar -->
             <ui:insert name="sidebar">
                 <ui:include src="sidebar.xhtml"/>
             </ui:insert>
+
+            </section><!-- right col -->
+            
+              
+            <!-- Remove project button -->
+            <h:form>
+                <h:commandButton class="btn btn-block btn-danger btn-flat" value="Borrar proyecto"></h:commandButton>
+            </h:form><!-- /.box -->
+              
+          </div><!-- /.row (main row) -->
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">

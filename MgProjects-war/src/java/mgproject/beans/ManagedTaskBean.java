@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -25,20 +26,22 @@ import mgproject.entities.Users;
 @RequestScoped
 public class ManagedTaskBean {
 
-    @EJB
-    private UsersFacade usersFacade;
-
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean loginBean;
     
     @EJB
+    private UsersFacade usersFacade;
+
+    @EJB
     private TaskFacade taskFacade;
     private String name;
+    private Long idproject;
     private String priority;
     private int time;
     private String timeType;
     private List<Task> task_list;
     private String userid;
+
 
     public String getUserid() {
         return userid;
@@ -64,6 +67,14 @@ public class ManagedTaskBean {
         this.name = name;
     }
 
+    public Long getIdproject() {
+        return idproject;
+    }
+
+    public void setIdproject(Long idproject) {
+        this.idproject = idproject;
+    }
+
     public String getPriority() {
         return priority;
     }
@@ -87,21 +98,15 @@ public class ManagedTaskBean {
     public void setTimeType(String timeType) {
         this.timeType = timeType;
     }
-
-    public LoginBean getLoginBean() {
-        return loginBean;
-    }
-
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
-    }
     
-
+    
+    
     /**
      * Creates a new instance of ManagedTaskBean
      */
     public ManagedTaskBean() {
     }
+
 
     @PostConstruct
     public void init(){
