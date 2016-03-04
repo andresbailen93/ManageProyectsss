@@ -64,9 +64,6 @@
                 #{managedProjectBean.loginBean.project.name}
                 <small>Panel de control</small>
             </h1>
-            <h:form>
-                <h:commandButton class="btn btn-block btn-primary btn-flat" value="Borrar proyecto"></h:commandButton>
-            </h:form>
         </section>
 
         <!-- Main content -->
@@ -335,11 +332,17 @@
                   </div><!-- /.row -->
                 </div>
               </div><!-- /.box -->
-              
              
 
 
             </section><!-- right col -->
+            
+              
+            <!-- Remove project button -->
+            <h:form>
+                <h:commandButton class="btn btn-block btn-danger btn-flat" value="Borrar proyecto"></h:commandButton>
+            </h:form><!-- /.box -->
+              
           </div><!-- /.row (main row) -->
 
         </section><!-- /.content -->
