@@ -46,7 +46,23 @@ public class LoginBean implements Serializable {
     private String email;
     private boolean singIn;
     private List<Project> project_list;
-    
+    private Project project;
+
+    public ProjectFacade getProjectFacade() {
+        return projectFacade;
+    }
+
+    public void setProjectFacade(ProjectFacade projectFacade) {
+        this.projectFacade = projectFacade;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }    
 
     public List<Project> getProject_list() {
         return project_list;
@@ -151,6 +167,12 @@ public class LoginBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index";
     }	
+    
+    public String doRedirectToProject(Project project){
+        this.project = project;
+        System.out.println(project.getName());
+        return "project";
+    }
     
 
 }

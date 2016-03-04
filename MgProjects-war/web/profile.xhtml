@@ -105,7 +105,12 @@
                         <div class="icon">
                             <i class="ion ion-clipboard"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Ir al proyecto <i class="fa fa-arrow-circle-right"></i></a>
+                        <h:form class="small-box-footer">
+                            <h:commandLink action="#{loginBean.doRedirectToProject(project)}" style="color: white;" value="Ir al proyecto ">
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </h:commandLink>
+                        </h:form>
+                        
                     </div>
                 </div>
             </ui:repeat>
