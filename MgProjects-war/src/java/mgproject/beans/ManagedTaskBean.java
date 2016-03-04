@@ -42,6 +42,14 @@ public class ManagedTaskBean {
     private List<Task> task_list;
     private String userid;
 
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
+
 
     public String getUserid() {
         return userid;
