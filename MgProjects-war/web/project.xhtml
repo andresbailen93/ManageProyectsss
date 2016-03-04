@@ -173,22 +173,22 @@
                   <h:form>
                     <div class="form-group">
                             
-                        <h:inputText class="form-control" a:placeholder="Nombre de la tarea" />
+                        <h:inputText class="form-control" a:placeholder="Nombre de la tarea" value="#{managedTaskBean.name}" />
                     </div>
                     <div class="form-group" style="width: 49.6%; display: inline-block">
-                        <h:inputText class="form-control" a:placeholder="Tiempo" />
+                        <h:inputText class="form-control" a:placeholder="Tiempo" value="#{managedTaskBean.time}"/>
                     </div>
                     <div class="form-group" style="width: 50%; display: inline-block">
-                        <h:selectOneMenu id="timeTask" class="form-control" value="" >
+                        <h:selectOneMenu id="timeTask" class="form-control" value="#{managedTaskBean.timeType}" >
                             <f:selectItem itemLabel="Unidad de tiempo" itemValue="default" />
                             <f:selectItem itemLabel="Minutos" itemValue="mins" />
                             <f:selectItem itemLabel="Horas" itemValue="hours" />
                             <f:selectItem itemLabel="Días" itemValue="days" />
-                            <f:selectItem itemLabel="weeks" itemValue="weeks" />
+                            <f:selectItem itemLabel="Semanas" itemValue="weeks" />
                         </h:selectOneMenu>
                     </div>
                     <div class="form-group" style="width: 49.6%; display: inline-block">
-                        <h:selectOneMenu id="priorityTask" class="form-control" value="">
+                        <h:selectOneMenu id="priorityTask" class="form-control" value="#{managedTaskBean.priority}">
                             <f:selectItem itemLabel="Prioridad" itemValue="default" />
                             <f:selectItem itemLabel="Acuciante" itemValue="acuciante" />
                             <f:selectItem itemLabel="Repentino" itemValue="repentino" />
@@ -197,7 +197,7 @@
                         </h:selectOneMenu>
                     </div>
                     <div class="form-group" style="width: 50%; display: inline-block">
-                        <h:selectOneMenu id="taskTo" class="form-control" value="">
+                        <h:selectOneMenu id="taskTo" class="form-control" value="pepito">
                             <f:selectItem itemLabel="Asignar a:" itemValue="default" />
                             <f:selectItem itemLabel="Alex" itemValue="0" />
                             <f:selectItem itemLabel="Andrés" itemValue="1" />
@@ -206,7 +206,7 @@
                         </h:selectOneMenu>
                     </div>
                     <div class="box-footer clearfix">
-                      <input type="button" class="btn btn-default pull-right" value="Crear" />
+                      <h:commandButton class="btn btn-default pull-right" action="#{managedTaskBean.doAddTask()}" value="Crear"></h:commandButton>
                     </div>
                   </h:form>
                 </div>
