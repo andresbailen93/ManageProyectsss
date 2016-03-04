@@ -40,6 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Project implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+        @GeneratedValue(generator="PROJECT_SEQUENCE") 
+    @SequenceGenerator(name="PROJECT_SEQUENCE",sequenceName="project_seq", allocationSize=1)
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID_PROJECT")

@@ -5,11 +5,15 @@
  */
 package mgproject.beans;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import mgproject.ejb.ProjectFacade;
 import mgproject.ejb.UsersFacade;
 import mgproject.entities.Project;
@@ -23,7 +27,11 @@ import mgproject.entities.Users;
 @RequestScoped
 public class AddProjectBean {
 
-    
+    @EJB
+    private UsersFacade usersFacade;
+
+    @ManagedProperty(value="#{loginBean}")
+    private LoginBean loginBean;
 
     @EJB
     private ProjectFacade projectFacade;
@@ -32,8 +40,75 @@ public class AddProjectBean {
     
     private String name;
     private String desc;
-    private Users admin;
     private boolean error = false;
+    private Users admin;
+    private List<Users> list_colaborador;
+    private String IdColaborador;
+    private Users colaborador;
+    private List<Users> colaboradores = new ArrayList<Users>();
+    private Project project;
+    private boolean exito=false;
+    private boolean invitacion=false;
+    private boolean error2=false;
+
+    public boolean isExito() {
+        return exito;
+    }
+
+    public void setExito(boolean exito) {
+        this.exito = exito;
+    }
+
+    public boolean isInvitacion() {
+        return invitacion;
+    }
+
+    public void setInvitacion(boolean invitacion) {
+        this.invitacion = invitacion;
+    }
+   
+    
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
+
+    public List<Users> getList_colaborador() {
+        return list_colaborador;
+    }
+
+    public void setList_colaborador(List<Users> list_colaborador) {
+        this.list_colaborador = list_colaborador;
+    }
+
+    public String getIdColaborador() {
+        return IdColaborador;
+    }
+
+    public void setIdColaborador(String IdColaborador) {
+        this.IdColaborador = IdColaborador;
+    }
+
+    public Users getColaborador() {
+        return colaborador;
+    }
+
+    public void setColaborador(Users colaborador) {
+        this.colaborador = colaborador;
+    }
+
+    public List<Users> getColaboradores() {
+        return colaboradores;
+    }
+
+    public void setColaboradores(List<Users> colaboradores) {
+        this.colaboradores = colaboradores;
+    }
+
 
     
     public String getName() {
@@ -67,6 +142,22 @@ public class AddProjectBean {
     public void setError(boolean error) {
         this.error = error;
     }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public boolean isError2() {
+        return error2;
+    }
+
+    public void setError2(boolean error2) {
+        this.error2 = error2;
+    }
     
     
     
@@ -77,30 +168,59 @@ public class AddProjectBean {
     @PostConstruct
     public void doInit(){
         error = false;
-        //PRUEBA
-    admin = new Users("1","alex");
+        invitacion=false;
+        exito=false;
+        error2=false;
+        admin = usersFacade.find(loginBean.getIdUser());
+        list_colaborador = usersFacade.findAll();
+        
         
     }
     
     public String doAddProject(){
     
+    
     List<Project> list = projectFacade.findByNameAndUser(name, admin);
         if (list.isEmpty()) {
 
-            Project project = new Project();
+            project = new Project();
+            
 
             project.setName(name);
             project.setDescription(desc);
             project.setIdAdmin(admin);
+            
 
             projectFacade.create(project);
-             return "index";
+            loginBean.setProject(project);
+            exito=true;
+             return "addProject";
         }else{
             error = true;
             return "addProject";
         }
    
 }
+    
+    public String doInvitar(){
+            
+        colaborador = usersFacade.find(IdColaborador);
+        admin = usersFacade.find(loginBean.getIdUser());
+
+        project = loginBean.getProject();
+        if (project == null) {
+            error2 = true;
+        } else {
+
+            List<Users> colaboradores = (List<Users>) project.getUsersCollection();
+            colaboradores.add(colaborador);
+            project.setUsersCollection(colaboradores);
+            projectFacade.edit(project);
+            invitacion = true;
+            
+        }
+    return "addProject";
+    }
     
     
 }

@@ -9,12 +9,14 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -32,6 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Chat implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(generator="CHAT_SEQUENCE") 
+    @SequenceGenerator(name="CHAT_SEQUENCE",sequenceName="chat_seq", allocationSize=1)
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID_CHAT")

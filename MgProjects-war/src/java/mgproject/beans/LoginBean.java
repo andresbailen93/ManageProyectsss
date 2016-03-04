@@ -78,6 +78,12 @@ public class LoginBean implements Serializable {
         this.project = project;
     }    
 
+    
+
+    
+    
+
+    
     public List<Project> getProject_list() {
         return project_list;
     }

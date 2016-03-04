@@ -226,21 +226,23 @@
                   </div><!-- /. tools -->
                 </div>
                 <div class="box-body">
-                  <form action="#" method="post">
+                  <h:form>
                     <div class="form-group">
-                      <input type="email" class="form-control" name="emailto" placeholder="Email to:"/>
+                        <h:inputTextarea value="#{sendEmailToBean.emailto}" class="form-control" id="emailto" a:placeholder="Email to:"/>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" name="subject" placeholder="Subject"/>
+                      <h:inputTextarea value="#{sendEmailToBean.subject}" class="form-control" id="subject" a:placeholder="Asunto"/>
                     </div>
                     <div>
-                      <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                        <h:inputTextarea value="#{sendEmailToBean.message}" class="textarea" a:placeholder="Mensaje" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"/>
                     </div>
-                  </form>
+                      <div class="box-footer clearfix">
+                    <h:commandButton action="#{sendEmailToBean.doSendEmailTo()}" class="pull-right btn btn-default" id="sendEmail" value="Enviar"/>
                 </div>
-                <div class="box-footer clearfix">
-                  <button class="pull-right btn btn-default" id="sendEmail">Send <i class="fa fa-arrow-circle-right"></i></button>
+              </h:form>
+                  
                 </div>
+                
               </div>
 
             </section><!-- /.Left col -->
