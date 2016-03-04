@@ -60,10 +60,13 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-            #{managedProjectBean.loginBean.project.name}
-            <small>Panel de control</small>
-          </h1>
+            <h1>
+                #{managedProjectBean.loginBean.project.name}
+                <small>Panel de control</small>
+            </h1>
+            <h:form>
+                <h:commandButton class="btn btn-block btn-primary btn-flat" value="Borrar proyecto"></h:commandButton>
+            </h:form>
         </section>
 
         <!-- Main content -->
@@ -219,7 +222,7 @@
               <div class="box box-info">
                 <div class="box-header">
                   <i class="fa fa-envelope"></i>
-                  <h3 class="box-title">Quick Email</h3>
+                  <h3 class="box-title">Email</h3>
                 </div>
                 <div class="box-body">
                   <h:form>
@@ -252,6 +255,7 @@
                 </div>
                 <div class="box-body chat" id="chat-box">
                 </div><!-- /.chat -->
+                <input type="hidden" class="form-control" name="id_project" id="id_project" value="#{managedProjectBean.loginBean.project.idProject}" />
                 <form id="addMessageChat">
                     <div class="box-footer">
                       <div class="input-group">

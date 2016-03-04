@@ -21,6 +21,7 @@ import mgproject.ejb.Message;
 public class MessageSessionHandler {
     private int messageId = 0;
     private final ArrayList<Session> sessions = new ArrayList<>();
+    private final ArrayList<SocketSession> socketSessions = new ArrayList<>();
     private final ArrayList<Message> messages = new ArrayList<>();
 
     public ArrayList<Message> getMessages() {
@@ -39,17 +40,36 @@ public class MessageSessionHandler {
             sendToSession(session, addMessage);
         }
     }
+    
+    public void addSocketSession(String idProject, Session session) {
+        SocketSession ss = new SocketSession();
+        ss.setIdproject(idProject);
+        ss.setSession(session);
+        socketSessions.add(ss);
+        for (Message message : messages) {
+            JsonObject addMessage = createAddMessage(message);
+            sendToSession(session, addMessage);
+        }
+    }
 
     public void removeSession(Session session) {
         sessions.remove(session);
     }
+    
+    public void removeSocketSession(String idProject, Session session){
+        SocketSession ss = new SocketSession();
+        ss.setIdproject(idProject);
+        ss.setSession(session);
+        socketSessions.remove(ss);
+    }
 
-    public void addMessage(Message message) {
+    public void addMessage(String idProject, Message message) {
         message.setId(messageId);
         messages.add(message);
         messageId++;
         JsonObject addMessage = createAddMessage(message);
-        sendToAllConnectedSessions(addMessage);
+//        sendToAllConnectedSessions(addMessage);
+        sendToAllProjectSessions(idProject, addMessage);
     }
 
     private JsonObject createAddMessage(Message message) {
@@ -65,8 +85,15 @@ public class MessageSessionHandler {
 
     private void sendToAllConnectedSessions(JsonObject message) {
         for (Session session : sessions) {
-            System.out.println("No llega al sendToAll" + session.getId());
             sendToSession(session, message);
+        }
+    }
+    
+    protected void sendToAllProjectSessions(String idProject, JsonObject message) {
+        for (SocketSession ss : socketSessions) {
+            if(ss.getIdproject().equalsIgnoreCase(idProject)){
+            sendToSession(ss.getSession(), message);               
+            }
         }
     }
 

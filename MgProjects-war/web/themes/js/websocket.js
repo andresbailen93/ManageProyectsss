@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-var socket = new WebSocket("ws://localhost:8080/MgProjects-war/actions");
+var idProject = document.getElementById("id_project").value;
+var socket = new WebSocket("ws://localhost:8080/MgProjects-war/actions/"+idProject);
 socket.onmessage = onMessage;
 
 function stopRKey(evt) { 
