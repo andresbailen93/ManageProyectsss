@@ -142,7 +142,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "entitis.ejb.Users[ idUser=" + idUser + " ]";
+        return "mgproject.entites.Users[ idUser=" + idUser + " ]";
     }
     
 }

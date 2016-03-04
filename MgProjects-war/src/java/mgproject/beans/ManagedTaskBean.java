@@ -5,9 +5,12 @@
  */
 package mgproject.beans;
 
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import mgproject.ejb.TaskFacade;
+import mgproject.entities.Task;
 
 /**
  *
@@ -16,11 +19,15 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 @RequestScoped
 public class ManagedTaskBean {
+
+    @EJB
+    private TaskFacade taskFacade;
     private String name;
     private Long idproject;
     private String priority;
     private int time;
     private String timeType;
+    
 
     public String getName() {
         return name;
@@ -71,7 +78,9 @@ public class ManagedTaskBean {
     }
     
     public String doAddTask(){
-        
+        Task addTask = new Task();
+        addTask.setName(this.name);
+        addTask.set
         
         return "project";
     }
