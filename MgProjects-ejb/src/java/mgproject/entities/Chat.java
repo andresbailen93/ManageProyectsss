@@ -112,7 +112,7 @@ public class Chat implements Serializable {
 
     @Override
     public String toString() {
-        return "mgproject.entites.Chat[ idChat=" + idChat + " ]";
+        return "mgproject.entities.Chat[ idChat=" + idChat + " ]";
     }
     
 }
