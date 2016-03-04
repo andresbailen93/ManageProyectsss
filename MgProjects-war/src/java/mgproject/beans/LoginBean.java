@@ -13,12 +13,15 @@ package mgproject.beans;
 import java.io.Serializable;
 import javax.faces.bean.SessionScoped;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import mgproject.ejb.ProjectFacade;
 import mgproject.ejb.UsersFacade;
+import mgproject.entities.Project;
 import mgproject.entities.Users;
 
 /**
@@ -30,8 +33,11 @@ import mgproject.entities.Users;
 public class LoginBean implements Serializable {
 
     @EJB
-    private UsersFacade usersFacade;
+    private ProjectFacade projectFacade;
 
+    @EJB
+    private UsersFacade usersFacade;
+    
     
     private String idUser;
     private String nickName;
@@ -39,6 +45,33 @@ public class LoginBean implements Serializable {
     private String payload;
     private String email;
     private boolean singIn = false;
+    private List<Project> project_list;
+    
+    private String depuracion = " ";
+
+    public List<Project> getProject_list() {
+        return project_list;
+    }
+
+    public void setProject_list(List<Project> project_list) {
+        this.project_list = project_list;
+    }
+
+    public UsersFacade getUsersFacade() {
+        return usersFacade;
+    }
+
+    public void setUsersFacade(UsersFacade usersFacade) {
+        this.usersFacade = usersFacade;
+    }
+
+    public String getDepuracion() {
+        return depuracion;
+    }
+
+    public void setDepuracion(String depuracion) {
+        this.depuracion = depuracion;
+    }
 
     public boolean isSingIn() {
         return singIn;
@@ -103,6 +136,21 @@ public class LoginBean implements Serializable {
 
     public String doLogin(){
         Users user = usersFacade.find(this.idUser);
+        
+        if( user == null ){
+            Users newUser = new Users();
+            newUser.setIdUser(this.idUser);
+            newUser.setNick(this.nickName);
+            newUser.setUrlImage(this.urlImage);
+            usersFacade.create(newUser);
+        }else{
+            user.setIdUser(this.idUser);
+            user.setNick(this.nickName);
+            user.setUrlImage(this.urlImage);
+        }
+        
+        this.project_list = projectFacade.findByUser(user);
+        
         return "profile";
     }
 
