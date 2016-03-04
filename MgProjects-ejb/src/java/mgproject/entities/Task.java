@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author andresbailen93
+ * @author inftel22
  */
 @Entity
 @Table(name = "TASK")
@@ -39,7 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Task.findByTimetype", query = "SELECT t FROM Task t WHERE t.timetype = :timetype"),
     @NamedQuery(name = "Task.findByPriority", query = "SELECT t FROM Task t WHERE t.priority = :priority")})
 public class Task implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull

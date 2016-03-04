@@ -15,9 +15,7 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean
 @RequestScoped
-public class ManagedProjectBean {
-    private Long idProject;
-   
+public class ManagedProjectBean {   
     
     @ManagedProperty(value="#{loginBean}")
     private LoginBean loginBean;
@@ -27,14 +25,6 @@ public class ManagedProjectBean {
      */
     public ManagedProjectBean() {
     }
-
-    public Long getIdProject() {
-        return idProject;
-    }
-
-    public void setIdProject(Long idProject) {
-        this.idProject = idProject;
-    } 
 
     public LoginBean getLoginBean() {
         return loginBean;
