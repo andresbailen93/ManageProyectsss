@@ -80,7 +80,7 @@ public class ManagedTaskBean {
     public String doAddTask(){
         Task addTask = new Task();
         addTask.setName(this.name);
-        addTask.set
+        
         
         return "project";
     }
