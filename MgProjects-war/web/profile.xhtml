@@ -8,7 +8,6 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>Dashboard</title>
-    <h:outputText value="#{loginBean.depuracion}"/>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <!-- Bootstrap 3.3.5 -->
@@ -42,12 +41,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </h:head>
-  <h:body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-
-        <ui:insert name="header">
-            <ui:include src="navbar.xhtml"/>
-        </ui:insert>
+    <h:body class="hold-transition skin-blue sidebar-mini">
         
         <div id="header">
             <ui:insert name="header">
@@ -62,63 +56,58 @@
             
         </div>
         
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-              <h1>
-                Bienvenido
-                <small>Escritorio personal</small>
-              </h1>
-            </section>
-
-
-            <section class="content">
-
-                <div class="col-lg-3 col-xs-6">
+         <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Bienvenido
+            <small>Escritorio personal</small>
+          </h1>
+        </section>
+         
+        
+        <section class="content">
+            
+            <div class="col-lg-3 col-xs-6">
                     <!-- small box -->
-                    <h:form>
-                    <div class="small-box">
+                     <h:form>
+                    <div class="small-box ">
                         <div class="inner">
+
                             <h2>Nuevo Proyecto</h2>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-
+                       
                         <h:commandLink action="addProject.xhtml" class="small-box-footer bg-gray-active">
                             Crear proyecto <i class="fa fa-arrow-circle-right "></i>
                         </h:commandLink>
-                    </div>
-                    </h:form>
+                        </div>
+                     </h:form>
+                    
                 </div>
 
-                <ui:repeat var="project" value="#{projectListBean.list}">
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-green">
-                            <div class="inner">
-                                <h2>#{project.name}</h2>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-clipboard"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">Ir al proyecto <i class="fa fa-arrow-circle-right"></i></a>
+            <ui:repeat var="project" value="#{projectListBean.list}">
+
+
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-green">
+                        <div class="inner">
+
+                            <h2>#{project.name}</h2>
                         </div>
+                        <div class="icon">
+                            <i class="ion ion-clipboard"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">Ir al proyecto <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
-                </ui:repeat>
+                </div>
+            </ui:repeat>
 
-            </section>
-        </div>
-
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <!-- To the right -->
-            <div class="pull-right hidden-xs">
-                Version 1.1.1
-            </div>
-            <!-- Default to the left -->
-            <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
-        </footer>
+        </section>
+         </div>
         
   <!-- REQUIRED JS SCRIPTS -->
 
