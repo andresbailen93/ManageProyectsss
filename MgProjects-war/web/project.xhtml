@@ -61,8 +61,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-              <h:outputText value="#{managedProjectBean.loginBean.project.name}">
-              </h:outputText>
+            #{managedProjectBean.loginBean.project.name}
             <small>Panel de control</small>
           </h1>
         </section>
@@ -129,6 +128,17 @@
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">
               <!-- Custom tabs (Charts with tabs)-->
+              
+              <!-- Description -->
+              <div class="box box-comments">
+                <div class="box-header">
+                  <i class="fa fa-sort-amount-desc"></i>
+                  <h3 class="box-title">Descripción del proyecto</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">                  
+                    #{managedProjectBean.loginBean.project.description}
+                </div>
+              </div>
               
                <!-- TO DO List -->
               <div class="box box-primary">
