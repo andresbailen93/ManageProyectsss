@@ -77,11 +77,11 @@ public class ManagedTaskBean {
     public ManagedTaskBean() {
     }
     
-    public String doAddTask(){
+    /*public String doAddTask(){
         Task addTask = new Task();
         addTask.setName(this.name);
         
         
         return "project";
-    }
+    }*/
 }
