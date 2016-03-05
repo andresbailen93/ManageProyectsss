@@ -10,6 +10,9 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <title>Dashboard</title>
+        <f:metadata>
+            <f:event listener="#{managedTaskBean.loginBean.init()}" type="preRenderView"/>
+        </f:metadata>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
         <!-- Bootstrap 3.3.5 -->
@@ -164,7 +167,7 @@
                                                     <!-- General tools such as edit or delete-->
                                                     <div class="tools">
                                                         <h:form>
-                                                            <h:outputLabel  onclick="#{managedTaskBean.doPreparetoEdit(task)}"><i class="fa fa-edit" style="color:red;cursor: pointer;" onclick="showEditItem()" ></i></h:outputLabel> 
+                                                            <h:outputLabel  onclick="#{managedTaskBean.doPreparetoEdit(task)}" rendered="#{managedTaskBean.admin}" style="margin-right: 10px;"><i class="fa fa-edit" style="color:red;cursor: pointer;" onclick="showEditItem()" ></i></h:outputLabel> 
                                                             <h:commandLink action="#{managedTaskBean.doDeleteTask(task)}"><i class="fa fa-trash-o" style="color:red;"></i></h:commandLink>
                                                         </h:form>
                                                     </div>
@@ -205,8 +208,11 @@
                                                 </h:selectOneMenu>
                                             </div>
                                             <div class="form-group" style="width: 50%; display: inline-block">
-                                                <h:selectOneMenu id="taskTo" class="form-control" value="#{managedTaskBean.userid}">
-                                                    <f:selectItems value="#{managedTaskBean.loginBean.project.usersCollection}" var="user" itemValue="#{user.idUser}" itemLabel="#{user.nick}" rendered="#{managedTaskBean.loginBean.idUser eq managedTaskBean.loginBean.project.idAdmin}"/>
+                                                <h:selectOneMenu id="taskTo" class="form-control" value="#{managedTaskBean.userid}" rendered="#{managedTaskBean.admin}">
+                                                    <f:selectItems value="#{managedTaskBean.loginBean.project.usersCollection}" var="user" itemValue="#{user.idUser}" itemLabel="#{user.nick}"/>
+                                                </h:selectOneMenu>
+                                                <h:selectOneMenu id="taskToME" class="form-control" value="#{managedTaskBean.userid}" rendered="#{!managedTaskBean.admin}">
+                                                    <f:selectItem itemLabel="#{managedTaskBean.loginBean.nickName}" itemValue="#{managedTaskBean.loginBean.idUser}"/>
                                                 </h:selectOneMenu>
                                             </div>
                                             <div class="box-footer clearfix">
@@ -217,16 +223,16 @@
                                     <!-- Edit Task-->
 
                                     <div class="box-body" id="editItem" style="display:none">
-                                        <h:form>
+                                        <h:form >
                                             <div class="form-group">
-                                                <h:inputText class="form-control" value="#{managedTaskBean.editTask.name}" disabled="true" />
+                                                <h:inputText class="form-control" value="#{managedTaskBean.loginBean.editTask.name}" disabled="true" />
                                             </div>
                                             <div class="form-group" style="width: 49.6%; display: inline-block">
-                                                <h:inputText class="form-control" value="#{managedTaskBean.editTask.time}"/>
+                                                <h:inputText class="form-control" value="#{managedTaskBean.loginBean.editTask.time}"/>
                                             </div>
                                             <div class="form-group" style="width: 50%; display: inline-block">
-                                                <h:selectOneMenu id="timeTask" class="form-control" value="#{managedTaskBean.editTask.timetype}" >
-                                                    <f:selectItem itemLabel="#{managedTaskBean.editTask.timetype}" itemValue="#{managedTaskBean.editTask.timetype}" />
+                                                <h:selectOneMenu id="timeTask" class="form-control" value="#{managedTaskBean.loginBean.editTask.timetype}" >
+                                                    <f:selectItem itemLabel="#{managedTaskBean.loginBean.editTask.timetype}" itemValue="#{managedTaskBean.loginBean.editTask.timetype}" />
                                                     <f:selectItem itemLabel="Unidad de tiempo" itemValue="default" />
                                                     <f:selectItem itemLabel="Minutos" itemValue="mins" />
                                                     <f:selectItem itemLabel="Horas" itemValue="hours" />
@@ -235,7 +241,7 @@
                                                 </h:selectOneMenu>
                                             </div>
                                             <div class="form-group" style="width: 49.6%; display: inline-block">
-                                                <h:selectOneMenu id="priorityTask" class="form-control" value="#{managedTaskBean.editTask.priority}" required="true">
+                                                <h:selectOneMenu id="priorityTask" class="form-control" value="#{managedTaskBean.loginBean.editTask.priority}" required="true">
                                                     <f:selectItem itemLabel="Prioridad" itemValue="default" />
                                                     <f:selectItem itemLabel="Acuciante" itemValue="acuciante" />
                                                     <f:selectItem itemLabel="Repentino" itemValue="repentino" />
@@ -244,14 +250,17 @@
                                                 </h:selectOneMenu>
                                             </div>
                                             <div class="form-group" style="width: 50%; display: inline-block">
-                                                <h:selectOneMenu id="taskTo" class="form-control" value="#{task.usersCollection}">
-                                                    <f:selectItems value="#{managedTaskBean.editTask.usersCollection}" var ="userBF" itemValue="#{userBF.idUser}" itemLabel="#{userBF.nick}" rendered="#{managedTaskBean.loginBean.idUser ne managedTaskBean.loginBean.project.idAdmin}"/>
-                                                    <f:selectItems value="#{managedTaskBean.loginBean.project.usersCollection}" var="user" itemValue="#{user.idUser}" itemLabel="#{user.nick}" rendered="#{managedTaskBean.loginBean.idUser eq managedTaskBean.loginBean.project.idAdmin}"/>
-
+                                   
+                                                <h:selectOneMenu id="taskTo" class="form-control" value="#{managedTaskBean.userid}" rendered="#{managedTaskBean.admin}">
+                                                    <f:selectItems value="#{managedTaskBean.loginBean.project.usersCollection}" var="user" itemValue="#{user.idUser}" itemLabel="#{user.nick}"/>
                                                 </h:selectOneMenu>
+                                                <h:selectOneMenu id="taskToME" class="form-control" value="#{managedTaskBean.userid}" rendered="#{!managedTaskBean.admin}">
+                                                    <f:selectItem itemLabel="#{managedTaskBean.loginBean.nickName}" itemValue="#{managedTaskBean.loginBean.idUser}"/>
+                                                </h:selectOneMenu>
+
                                             </div>
                                             <div class="box-footer clearfix">
-                                                <h:commandButton class="btn btn-default pull-right" action="#{managedTaskBean.doEditTask(task)}" value="Editar"></h:commandButton>
+                                                <h:commandButton class="btn btn-default pull-right" action="#{managedTaskBean.doEditTask(task)}" value="Editar" ></h:commandButton>
                                             </div>
                                         </h:form>
                                     </div>

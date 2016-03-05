@@ -42,7 +42,15 @@ public class ManagedTaskBean {
     private List<Task> task_list;
     private String userid;
     private boolean taskNoAdded;
-    private Task editTask;
+    private boolean admin;
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 
     public boolean isTaskNoAdded() {
         return taskNoAdded;
@@ -50,15 +58,6 @@ public class ManagedTaskBean {
 
     public void setTaskNoAdded(boolean taskNoAdded) {
         this.taskNoAdded = taskNoAdded;
-    }
-
-    
-    public Task getEditTask() {
-        return editTask;
-    }
-
-    public void setEditTask(Task editTask) {
-        this.editTask = editTask;
     }
 
     public LoginBean getLoginBean() {
@@ -137,6 +136,10 @@ public class ManagedTaskBean {
         Users user = usersFacade.find(this.loginBean.getIdUser());
         this.task_list = list_task;
         this.taskNoAdded = false;
+        this.admin=false;
+        if(loginBean.getIdUser().equals(loginBean.getProject().getIdAdmin().getIdUser())){
+            this.admin = true;
+        }
 
     }
 
@@ -174,11 +177,12 @@ public class ManagedTaskBean {
     }
 
     public void doPreparetoEdit(Task task) {
-        this.editTask = task;
+        loginBean.setEditTask(task);
+        
     }
 
     public String doEditTask(Task task) {
-
+        taskFacade.edit(loginBean.getEditTask());
         return "project";
     }
 }
