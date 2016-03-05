@@ -7,10 +7,18 @@ package mgproject.beans;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.mail.MessagingException;
+import mgproject.ejb.ProjectFacade;
+import mgproject.ejb.UsersFacade;
+import mgproject.entities.Project;
+import mgproject.entities.Users;
 import mgproject.util.mail.Mail;
 
 /**
@@ -20,6 +28,10 @@ import mgproject.util.mail.Mail;
 @ManagedBean
 @RequestScoped
 public class SendEmailToBean {
+    @EJB
+    private ProjectFacade projectFacade;
+    @EJB
+    private UsersFacade usersFacade;
     
     
     @ManagedProperty(value = "#{loginBean}")
@@ -27,9 +39,14 @@ public class SendEmailToBean {
     
     
     
-    String message;
-    String subject;
-    String emailto;
+    protected String message;
+    protected String subject;
+    protected String emailto;
+    protected Users admin;
+    protected String emailselect;
+    protected Project p;
+    protected List<Users> listusuarios = new ArrayList<Users>();
+    protected boolean exito;
     
     Mail mail;
 
@@ -79,18 +96,79 @@ public class SendEmailToBean {
     public void setEmailto(String emailto) {
         this.emailto = emailto;
     }
+
+    public ProjectFacade getProjectFacade() {
+        return projectFacade;
+    }
+
+    public void setProjectFacade(ProjectFacade projectFacade) {
+        this.projectFacade = projectFacade;
+    }
+
+    public UsersFacade getUsersFacade() {
+        return usersFacade;
+    }
+
+    public void setUsersFacade(UsersFacade usersFacade) {
+        this.usersFacade = usersFacade;
+    }
+
+    public Users getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Users admin) {
+        this.admin = admin;
+    }
+
+    public String getEmailselect() {
+        return emailselect;
+    }
+
+    public void setEmailselect(String emailselect) {
+        this.emailselect = emailselect;
+    }
+
+    public Project getP() {
+        return p;
+    }
+
+    public void setP(Project p) {
+        this.p = p;
+    }
+
+    public List<Users> getListusuarios() {
+        return listusuarios;
+    }
+
+    public void setListusuarios(List<Users> listusuarios) {
+        this.listusuarios = listusuarios;
+    }
+
+    public boolean isExito() {
+        return exito;
+    }
+
+    public void setExito(boolean exito) {
+        this.exito = exito;
+    }
     
-    
+    @PostConstruct
+    public void init() {
+        admin = usersFacade.find(loginBean.getIdUser());
+        listusuarios = (List<Users>) loginBean.getProject().getUsersCollection();
+        listusuarios.remove(admin);
+        exito = false;
+    }
     
     
     public void doSendEmailTo() throws MessagingException {
-        String messageTunned = "<html> <p>Tu compañero/a : loginBean.getNickName() </p> <img src=loginBean.getUrlImage()><br> <p>te ha enviado el siguiente mensaje: message </p></html>";
-        mail = new Mail(emailto ,subject, messageTunned);
-        System.out.println(mail);
+        emailto = usersFacade.find(this.emailselect).getEmail();
+        mail = new Mail(emailto, subject, "Tu compañero/a:"+ "<br>" + loginBean.getNickName() +"<br>del proyecto: " + loginBean.getProject().getName() +"<br> te ha enviado el siguiente mensaje:\n"+ ""+ message);
         mail.sendMailTo();
         
-        
-        emailto = "";
+        exito = true;
+        this.emailselect = "";
         message = "";
         subject = "";
     }
