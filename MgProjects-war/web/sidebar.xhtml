@@ -55,8 +55,21 @@
                         <!-- Optionally, you can add icons to the links -->
                         <ui:repeat value="#{loginBean.project_list}" var="project">
                             <li>
-                                <h:commandLink id="addProject" action="addProject.xhtml">
+                                <h:commandLink id="addProject" action="#{loginBean.doRedirectToProject(project)}">
                                     <span class="fa fa-link"></span>
+                                    #{project.name}
+                                </h:commandLink>
+                            </li>
+
+                        </ui:repeat>
+                        <li class="header">Mis Proyectos</li>
+                         <div>
+                            <h:outputText rendered="#{projectListBean.error}" value="Vacio"/>
+                        </div>
+                        <ui:repeat value="#{loginBean.list_colaborators}" var="project">
+                            <li>
+                                <h:commandLink id="addProject" action="#{loginBean.doRedirectToProject(project)}">
+                                    <span class="fa fa-folder"></span>
                                     #{project.name}
                                 </h:commandLink>
                             </li>
