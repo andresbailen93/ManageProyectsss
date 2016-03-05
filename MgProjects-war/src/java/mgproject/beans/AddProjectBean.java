@@ -50,7 +50,7 @@ public class AddProjectBean {
     private boolean exito=false;
     private boolean invitacion=false;
     private boolean error2=false;
-
+   
     public boolean isExito() {
         return exito;
     }
@@ -166,41 +166,36 @@ public class AddProjectBean {
         exito=false;
         error2=false;
         admin = usersFacade.find(loginBean.getIdUser());
-        
-        
-        
+  
     }
     
-    public String doAddProject(){
-    
-    
-    List<Project> list = projectFacade.findByNameAndUser(name, admin);
+    public String doAddProject() {
+
+        List<Project> list = projectFacade.findByNameAndUser(name, admin);
         if (list.isEmpty()) {
 
             project = new Project();
-            
 
             project.setName(name);
             project.setDescription(desc);
             project.setIdAdmin(admin);
-            
 
             projectFacade.create(project);
             loginBean.setProject(project);
             loginBean.getProject_list().add(project);
-            exito=true;
-             return "addProject";
-        }else{
+            exito = true;
+            return "addProject";
+        } else {
             error = true;
             return "addProject";
         }
-   
-}
+
+    }
     
     public void doInvitar(){
             
         colaborador = usersFacade.find(IdColaborador);
-        admin = usersFacade.find(loginBean.getIdUser());
+        
 
         project = loginBean.getProject();
         if (project == null) {
@@ -212,6 +207,7 @@ public class AddProjectBean {
             project.setUsersCollection(colaboradores);
             projectFacade.edit(project);
             invitacion = true;
+            
             loginBean.getUsers_list().remove(colaborador);
             
         }

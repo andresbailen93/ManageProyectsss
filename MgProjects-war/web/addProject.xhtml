@@ -90,7 +90,7 @@
                                 <label>Agregar Colaboradores:</label>
                                 <div>
                                     <h:selectOneMenu id="colaborador" value="#{addProjectBean.idColaborador}" class="form-control">
-                                        <f:selectItems value="#{loginBean.users_list}" var="colaborador" itemValue="#{colaborador.idUser}" itemLabel="#{colaborador.nick}"></f:selectItems>
+                                        <f:selectItems value="#{addProjectBean.loginBean.users_list}" var="colaborador" itemValue="#{colaborador.idUser}" itemLabel="#{colaborador.nick}"></f:selectItems>
                                     </h:selectOneMenu>
                                 </div>
                                 
@@ -101,7 +101,7 @@
                                     <label>Usuarios colaboradores:</label>
                                     <ui:repeat value="#{loginBean.project.usersCollection}" var="user">
                                         <div class="contacts-list">
-                                        <h:outputText value=" #{user.nick}" class="fa fa-github"/>
+                                            <h:outputText value=" #{user.nick}" class="fa fa-github" rendered="#{addProjectBean.invitacion}"/>
                                         </div>
                                     </ui:repeat>
                                 </div>
