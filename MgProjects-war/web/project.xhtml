@@ -137,6 +137,20 @@
                                     #{managedProjectBean.loginBean.project.description}
                                 </div>
                             </div>
+                            
+                              <div class="box box-comments">
+                                <div class="box-header">
+                                    <i class="fa fa-sort-amount-desc"></i>
+                                    <h3 class="box-title">Colaboradores:</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">                  
+                                    <ui:repeat value="#{managedProjectBean.loginBean.project.usersCollection}" var="user">
+                                        <div class="contacts-list">
+                                        <h:outputText value=" #{user.nick}" class="fa fa-github"/>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                            </div>
 
                             <!-- TO DO List -->
                             <div class="box box-primary">
@@ -257,7 +271,7 @@
                                     </div>
 
                                 </div><!-- /.box -->
-
+                            </div>
 
 
 
@@ -284,7 +298,7 @@
                                         </h:form>
                                     </div>
                                 </div>
-                            </div>
+                          
                         </section><!-- /.Left col -->
                         <!-- right col (We are only adding the ID to make the widgets sortable)-->
                         <section class="col-lg-5 connectedSortable">

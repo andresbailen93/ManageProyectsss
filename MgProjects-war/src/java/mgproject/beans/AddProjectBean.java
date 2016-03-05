@@ -42,7 +42,7 @@ public class AddProjectBean {
     private String desc;
     private boolean error = false;
     private Users admin;
-    private List<Users> list_colaborador;
+    
     private String IdColaborador;
     private Users colaborador;
     private List<Users> colaboradores = new ArrayList<Users>();
@@ -77,13 +77,7 @@ public class AddProjectBean {
         this.loginBean = loginBean;
     }
 
-    public List<Users> getList_colaborador() {
-        return list_colaborador;
-    }
-
-    public void setList_colaborador(List<Users> list_colaborador) {
-        this.list_colaborador = list_colaborador;
-    }
+    
 
     public String getIdColaborador() {
         return IdColaborador;
@@ -172,7 +166,7 @@ public class AddProjectBean {
         exito=false;
         error2=false;
         admin = usersFacade.find(loginBean.getIdUser());
-        list_colaborador = usersFacade.findAll();
+        
         
         
     }
@@ -203,7 +197,7 @@ public class AddProjectBean {
    
 }
     
-    public String doInvitar(){
+    public void doInvitar(){
             
         colaborador = usersFacade.find(IdColaborador);
         admin = usersFacade.find(loginBean.getIdUser());
@@ -218,9 +212,10 @@ public class AddProjectBean {
             project.setUsersCollection(colaboradores);
             projectFacade.edit(project);
             invitacion = true;
+            loginBean.getUsers_list().remove(colaborador);
             
         }
-    return "addProject";
+    
     }
     
     

@@ -54,6 +54,11 @@ public class LoginBean implements Serializable {
     private String taskPln;
     private String taskAcc;
     private List<Project> list_colaborators;
+    private List<Users> users_list;
+
+    
+    
+    
 
     public List<Project> getList_colaborators() {
         return list_colaborators;
@@ -88,6 +93,14 @@ public class LoginBean implements Serializable {
     public void setProject(Project project) {
         this.project = project;
     }    
+
+    public List<Users> getUsers_list() {
+        return users_list;
+    }
+
+    public void setUsers_list(List<Users> users_list) {
+        this.users_list = users_list;
+    }
 
     
 
@@ -203,6 +216,7 @@ public class LoginBean implements Serializable {
                 Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
     }
 
     public String doLogin(){
@@ -222,6 +236,7 @@ public class LoginBean implements Serializable {
         }
         this.singIn = true;
         this.project_list = projectFacade.findByUser(user);
+        this.users_list = usersFacade.findAll();
         
         return "index";
     }
