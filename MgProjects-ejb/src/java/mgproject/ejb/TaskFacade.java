@@ -34,4 +34,8 @@ public List<Task> findTaskByProjectUser(Project project){
     lista_task = em.createNamedQuery("Task.findByProjectUser").setParameter("idproject", project).getResultList();
     return lista_task;
 }
+public List<Task> findTaskByNameIdproject(Project project, String name){
+    List<Task> task_list = em.createNamedQuery("Task.findByNameAnProject").setParameter("idproject", project).setParameter("name", name).getResultList();
+    return task_list;
+}
 }

@@ -40,7 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Task.findByTime", query = "SELECT t FROM Task t WHERE t.time = :time"),
     @NamedQuery(name = "Task.findByTimetype", query = "SELECT t FROM Task t WHERE t.timetype = :timetype"),
     @NamedQuery(name = "Task.findByPriority", query = "SELECT t FROM Task t WHERE t.priority = :priority"),
-    @NamedQuery(name = "Task.findByProjectUser", query = "SELECT t FROM Task t WHERE t.idProject = :idproject")})
+    @NamedQuery(name = "Task.findByProjectUser", query = "SELECT t FROM Task t WHERE t.idProject = :idproject"),
+    @NamedQuery(name = "Task.findByNameAnProject", query = "SELECT t FROM Task t WHERE t.name = :name AND t.idProject = :idproject")})
 public class Task implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
