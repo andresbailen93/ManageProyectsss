@@ -26,6 +26,7 @@ public class SendEmailBean {
     private String message;
     private String subject;
     private String name;
+    protected boolean exito = false;
 
     public String getMessage() {
         return message;
@@ -51,6 +52,16 @@ public class SendEmailBean {
         this.name = name;
     }
 
+    public boolean isExito() {
+        return exito;
+    }
+
+    public void setExito(boolean exito) {
+        this.exito = exito;
+    }
+    
+    
+
     /**
      * Creates a new instance of sendEmailBean
      */
@@ -60,6 +71,8 @@ public class SendEmailBean {
     public void doSendMail() throws MessagingException {
         mail = new Mail(mail.getDestiny(), subject, "El mensaje :" + "" + message + "ha sido enviado por el usurio :" + "" + name);
         mail.sendMail();
+        
+        exito = true;
         name = "";
         message = "";
         subject = "";

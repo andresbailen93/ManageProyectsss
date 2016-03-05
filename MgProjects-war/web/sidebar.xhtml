@@ -45,6 +45,13 @@
                 <h:form>
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
+                         <li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="#">Link in level 2</a></li>
+                <li><a href="#">Link in level 2</a></li>
+              </ul>
+            </li>
                         <li>
                             <h:commandLink id="addProject" action="addProject.xhtml">
                                 <span class="fa fa-plus"></span>
@@ -56,13 +63,13 @@
                         <ui:repeat value="#{loginBean.project_list}" var="project">
                             <li>
                                 <h:commandLink id="addProject" action="#{loginBean.doRedirectToProject(project)}">
-                                    <span class="fa fa-link"></span>
+                                    <span class="fa fa-folder"></span>
                                     #{project.name}
                                 </h:commandLink>
                             </li>
 
                         </ui:repeat>
-                        <li class="header">Otros Proyectos</li>
+                        <li class="header">Proyectos de colaboración</li>
                          <div>
                             <h:outputText rendered="#{projectListBean.error}" value="Vacio"/>
                         </div>

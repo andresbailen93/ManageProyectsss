@@ -121,7 +121,7 @@ public class Mail {
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(destiny));
         message.setSubject(subject);
         message.setSentDate(new Date());
-        message.setText(mensaje);
+        message.setContent(mensaje, "text/html");
         
         Transport tr = session.getTransport("smtp");
         tr.connect(servidorSMTP, usuario, password);
@@ -150,7 +150,7 @@ public class Mail {
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(destiny));
         message.setSubject(subject);
         message.setSentDate(new Date());
-        message.setText(mensaje);
+        message.setContent(mensaje, "text/html");
         
         Transport tr = session.getTransport("smtp");
         tr.connect(servidorSMTP, usuario, password);

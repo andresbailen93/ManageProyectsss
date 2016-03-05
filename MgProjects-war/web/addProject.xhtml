@@ -23,6 +23,8 @@
         <link rel="stylesheet" href="themes/dist/css/AdminLTE.min.css"/>
 
         <link rel="stylesheet" href="themes/dist/css/skins/skin-blue.min.css"/>
+        
+        <script src="utils.js" type="text/javascript"></script>
     </h:head>
 
     <h:body class="hold-transition skin-blue sidebar-mini">
@@ -54,9 +56,9 @@
 
                 <div class="panel-body">
 
-                    <!-- AddTest FORM -->
-                    <h:form>
-                        <div class="form-group ">
+                        <!-- AddTest FORM -->
+                        <h:form id="newProject">
+                            <div class="form-group ">
 
                             <h:outputText value="Ya existe un proyecto con ese nombre" rendered="#{addProjectBean.error}" class="alert alert-danger center-block small-margin"/>
                             <h:outputText value="Usuario invitado correctamente" rendered="#{addProjectBean.invitacion}" class="alert alert-success center-block small-margin"/>
@@ -99,13 +101,48 @@
 
 
 
-                    </h:form>
+                            <div class="form-group">
+                                <label>Administrador:</label>
+                                <h:inputText id="autor" class="form-control"  value="#{addProjectBean.loginBean.nickName}" readonly="true">
+                                </h:inputText>                              
+                            </div>
+                  
+                            <h:commandButton  class="btn btn-primary btn-md" action="#{addProjectBean.doAddProject()}" value="Añadir Proyecto" id="crear" onclick="habilitar()"/>
+                        </h:form>
+                        <br/>
+                      
+                        <h:form id="invitar">
+                            <div class="form-group">
+                                <label>Agregar Colaboradores:</label>
+                                <div>
+                                    <h:selectOneMenu id="colaborador" value="#{addProjectBean.idColaborador}" class="form-control">
+                                        <f:selectItems value="#{addProjectBean.loginBean.users_list}" var="colaborador" itemValue="#{colaborador.idUser}" itemLabel="#{colaborador.nick}"></f:selectItems>
+                                    </h:selectOneMenu>
+                                </div>
+                                
+                                </div>
+                            <h:commandButton id="btnInvitar" value="Invitar usuario" action="#{addProjectBean.doInvitar()}" class="btn btn-primary btn-md"  />
+                                <br/>
+                                <div class="form-group">
+                                    <label>Usuarios colaboradores:</label>
+                                    <ui:repeat value="#{loginBean.project.usersCollection}" var="user">
+                                        <div class="contacts-list">
+                                            <h:outputText value=" #{user.nick}" class="fa fa-github" rendered="#{addProjectBean.invitacion}"/>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                            
+                        </h:form>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
 
+               
+            </div><!-- /.content-wrapper -->
 
-
-
-                </div>
-            </section>
 
             <!-- Main content -->
             <section class="content">

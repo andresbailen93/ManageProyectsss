@@ -140,6 +140,20 @@
                                     #{managedProjectBean.loginBean.project.description}
                                 </div>
                             </div>
+                            
+                              <div class="box box-comments">
+                                <div class="box-header">
+                                    <i class="fa fa-sort-amount-desc"></i>
+                                    <h3 class="box-title">Colaboradores:</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">                  
+                                    <ui:repeat value="#{managedProjectBean.loginBean.project.usersCollection}" var="user">
+                                        <div class="contacts-list">
+                                        <h:outputText value=" #{user.nick}" class="fa fa-github"/>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                            </div>
 
                             <!-- TO DO List -->
                             <div class="box box-primary">
@@ -266,7 +280,7 @@
                                     </div>
 
                                 </div><!-- /.box -->
-
+                            </div>
 
 
 
@@ -279,21 +293,28 @@
                                     <div class="box-body">
                                         <h:form>
                                             <div class="form-group">
-                                                <h:inputTextarea value="#{sendEmailToBean.emailto}" class="form-control" id="emailto" a:placeholder="Email to:"/>
+                                                <h:selectOneMenu id="email" value="#{sendEmailToBean.emailselect}" class="form-control">
+                                                    <f:selectItems value="#{sendEmailToBean.listusuarios}" var="usuario" itemValue="#{usuario.idUser}" itemLabel="#{usuario.email}"></f:selectItems>
+                                                </h:selectOneMenu>
                                             </div>
                                             <div class="form-group">
-                                                <h:inputTextarea value="#{sendEmailToBean.subject}" class="form-control" id="subject" a:placeholder="Asunto"/>
+                                                <h:inputTextarea value="#{sendEmailToBean.subject}" class="form-control" id="subject" a:placeholder="Asunto" required="true">
+                                                    <f:validateLength minimum="3" maximum="50"/>
+                                                </h:inputTextarea>
                                             </div>
                                             <div>
-                                                <h:inputTextarea value="#{sendEmailToBean.message}" class="textarea" a:placeholder="Mensaje" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"/>
+                                                <h:inputTextarea value="#{sendEmailToBean.message}" class="textarea" a:placeholder="Mensaje" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required="true">
+                                                    <f:validateLength minimum="3" maximum="400"/>
+                                                </h:inputTextarea>
                                             </div>
                                             <div class="box-footer clearfix">
                                                 <h:commandButton action="#{sendEmailToBean.doSendEmailTo()}" class="pull-right btn btn-default" id="sendEmail" value="Enviar"/>
                                             </div>
+                                            <h:outputText value="Email enviado correctamente" rendered="#{sendEmailToBean.exito}" class="alert alert-success center-block small-margin"/>
                                         </h:form>
                                     </div>
                                 </div>
-                            </div>
+                          
                         </section><!-- /.Left col -->
                         <!-- right col (We are only adding the ID to make the widgets sortable)-->
                         <section class="col-lg-5 connectedSortable">
