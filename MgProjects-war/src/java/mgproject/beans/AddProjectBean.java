@@ -193,6 +193,7 @@ public class AddProjectBean {
 
             projectFacade.create(project);
             loginBean.setProject(project);
+            loginBean.getProject_list().add(project);
             exito=true;
              return "addProject";
         }else{

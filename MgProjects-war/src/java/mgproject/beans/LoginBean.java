@@ -53,6 +53,17 @@ public class LoginBean implements Serializable {
     private String taskRep;
     private String taskPln;
     private String taskAcc;
+    private List<Project> list_colaborators;
+
+    public List<Project> getList_colaborators() {
+        return list_colaborators;
+    }
+
+    public void setList_colaborators(List<Project> list_colaborators) {
+        this.list_colaborators = list_colaborators;
+    }
+    
+    
 
     public Collection<Task> getTasks() {
         return tasks;
