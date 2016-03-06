@@ -8,6 +8,9 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <title>Manage Projects</title>
+        <f:metadata>
+            <f:event listener="#{loginBean.init()}" type="preRenderView"/>
+        </f:metadata>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
         <!-- Bootstrap 3.3.5 -->
@@ -82,7 +85,7 @@
                         <h:commandButton  class="btn btn-primary btn-md" action="#{addProjectBean.doAddProject()}" value="Añadir Proyecto"/>
                     </h:form>
                     <br/>
-                                 
+
                 </div>
             </section>
 
