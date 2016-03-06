@@ -82,27 +82,7 @@
                         <h:commandButton  class="btn btn-primary btn-md" action="#{addProjectBean.doAddProject()}" value="Añadir Proyecto"/>
                     </h:form>
                     <br/>
-                    <h:form>
-                        <div class="form-group">
-                            <label>Colaboradores:</label>
-                            <div>
-                                <h:selectOneMenu id="colaborador" value="#{addProjectBean.idColaborador}" class="form-control">
-                                    <f:selectItems value="#{addProjectBean.loginBean.users_list}" var="colaborador" itemValue="#{colaborador.idUser}" itemLabel="#{colaborador.nick}"></f:selectItems>
-                                </h:selectOneMenu>
-                            </div>
-
-                        </div>
-                        <h:commandButton value="Invitar usuario" action="#{addProjectBean.doInvitar()}" class="btn btn-primary btn-md"/>
-                        <br/>
-                        <div class="form-group">
-                            <label>Usuarios colaboradores:</label>
-                            <ui:repeat value="#{loginBean.project.usersCollection}" var="user">
-                                <div class="contacts-list">
-                                    <h:outputText value=" #{user.nick}" class="fa fa-github" rendered="#{addProjectBean.invitacion}"/>
-                                </div>
-                            </ui:repeat>
-                        </div>   
-                    </h:form>                     
+                                 
                 </div>
             </section>
 

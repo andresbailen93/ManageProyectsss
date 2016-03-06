@@ -184,7 +184,7 @@ public class AddProjectBean {
             loginBean.setProject(project);
             loginBean.getProject_list().add(project);
             exito = true;
-            return "addProject";
+            return "project";
         } else {
             error = true;
             return "addProject";
@@ -192,7 +192,7 @@ public class AddProjectBean {
 
     }
     
-    public void doInvitar(){
+    public String doInvitar(){
             
         colaborador = usersFacade.find(IdColaborador);
         
@@ -211,7 +211,7 @@ public class AddProjectBean {
             loginBean.getUsers_list().remove(colaborador);
             
         }
-    
+       return "project";
     }
     
     
