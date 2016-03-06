@@ -139,21 +139,7 @@
                                 <div class="box-body">                  
                                     #{managedProjectBean.loginBean.project.description}
                                 </div>
-                            </div>
-                            
-                              <div class="box box-comments">
-                                <div class="box-header">
-                                    <i class="fa fa-sort-amount-desc"></i>
-                                    <h3 class="box-title">Colaboradores:</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">                  
-                                    <ui:repeat value="#{managedProjectBean.loginBean.project.usersCollection}" var="user">
-                                        <div class="contacts-list">
-                                        <h:outputText value=" #{user.nick}" class="fa fa-github"/>
-                                        </div>
-                                    </ui:repeat>
-                                </div>
-                            </div>
+                            </div>                            
 
                             <!-- TO DO List -->
                             <div class="box box-primary">
@@ -294,7 +280,7 @@
                                         <h:form>
                                             <div class="form-group">
                                                 <h:selectOneMenu id="email" value="#{sendEmailToBean.emailselect}" class="form-control">
-                                                    <f:selectItems value="#{sendEmailToBean.listusuarios}" var="usuario" itemValue="#{usuario.idUser}" itemLabel="#{usuario.email}"></f:selectItems>
+                                                    <f:selectItems value="#{sendEmailToBean.listusuarios}" var="usuario" itemValue="#{usuario.idUser}" itemLabel="#{usuario.nick}"></f:selectItems>
                                                 </h:selectOneMenu>
                                             </div>
                                             <div class="form-group">
@@ -342,81 +328,27 @@
                                     </div>
                                 </form>
                             </div><!-- /.box (chat box) -->
-
-                            <!-- Calendar -->
-                            <div class="box box-solid bg-green-gradient">
+                            
+                            <div class="box box-comments">
                                 <div class="box-header">
-                                    <i class="fa fa-calendar"></i>
-                                    <h3 class="box-title">Calendar</h3>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        <!-- button with a dropdown -->
-                                        <div class="btn-group">
-                                            <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-                                            <ul class="dropdown-menu pull-right" role="menu">
-                                                <li><a href="#">Add new event</a></li>
-                                                <li><a href="#">Clear events</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">View calendar</a></li>
-                                            </ul>
-                                        </div>
-                                        <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                        <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div><!-- /. tools -->
+                                    <i class="fa fa-sort-amount-desc"></i>
+                                    <h3 class="box-title">Colaboradores:</h3>
                                 </div><!-- /.box-header -->
-                                <div class="box-body no-padding">
-                                    <!--The calendar -->
-                                    <div id="calendar" style="width: 100%"></div>
-                                </div><!-- /.box-body -->
-                                <div class="box-footer text-black">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <!-- Progress bars -->
-                                            <div class="clearfix">
-                                                <span class="pull-left">Task #1</span>
-                                                <small class="pull-right">90%</small>
-                                            </div>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                                            </div>
-
-                                            <div class="clearfix">
-                                                <span class="pull-left">Task #2</span>
-                                                <small class="pull-right">70%</small>
-                                            </div>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                                            </div>
-                                        </div><!-- /.col -->
-                                        <div class="col-sm-6">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Task #3</span>
-                                                <small class="pull-right">60%</small>
-                                            </div>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                                            </div>
-
-                                            <div class="clearfix">
-                                                <span class="pull-left">Task #4</span>
-                                                <small class="pull-right">40%</small>
-                                            </div>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                                            </div>
-                                        </div><!-- /.col -->
-                                    </div><!-- /.row -->
+                                <div class="box-body">                  
+                                    <ui:repeat value="#{managedProjectBean.loginBean.project.usersCollection}" var="user">
+                                        <div class="contacts-list">
+                                        <h:outputText value=" #{user.nick}" class="fa fa-github"/>
+                                        </div>
+                                    </ui:repeat>
                                 </div>
-                            </div><!-- /.box -->
-
-
+                            </div>
 
                         </section><!-- right col -->
 
 
                         <!-- Remove project button -->
                         <h:form>
-                            <h:commandButton class="btn btn-block btn-danger btn-flat" value="Borrar proyecto"></h:commandButton>
+                            <h:commandButton class="btn btn-block btn-danger btn-flat" action="#{managedProjectBean.doDeleteProject(managedProjectBean.loginBean.project)}" value="Borrar proyecto"></h:commandButton>
                         </h:form><!-- /.box -->
 
                     </div><!-- /.row (main row) -->
