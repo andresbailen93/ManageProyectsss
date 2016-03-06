@@ -220,13 +220,13 @@
             </div>
         </header>
 
-        <h:form id="loginForm" rendered="#{!loginBean.singIn}">
+        <h:form  id="loginForm" rendered="#{!loginBean.singIn}">
             <h:inputHidden id="hiddenId" value="#{loginBean.idUser}"/>
             <h:inputHidden id="hiddenNick" value="#{loginBean.nickName}"/>
             <h:inputHidden id="hiddenMail" value="#{loginBean.email}"/>
             <h:inputHidden id="hiddenImage" value="#{loginBean.urlImage}"/>
             <h:inputHidden id="hiddenToken" value="#{loginBean.payload}"/>
-            <h:commandButton id="hiddenButton" action="#{loginBean.doLogin()}"/>
+            <h:commandButton style="display:none;" id="hiddenButton" action="#{loginBean.doLogin()}"/>
         </h:form>
 
         <section id="fh5co-home" data-section="home" style="background-image: url(themes/images/full_image_2.jpg);" data-stellar-background-ratio="0.5">
