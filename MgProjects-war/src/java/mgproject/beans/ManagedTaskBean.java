@@ -176,7 +176,11 @@ public class ManagedTaskBean {
         return "project";
     }
 
-    public String doEditTask(Task task) {
+    public String doEditTask(Long idTask) {
+        Task task = new Task();
+        task.setIdTask(idTask);
+        System.out.println("Id de la tarea: " + task);
+        task = taskFacade.find(idTask);
         loginBean.setEditTask(task);
         taskFacade.edit(loginBean.getEditTask());
         return "project";
