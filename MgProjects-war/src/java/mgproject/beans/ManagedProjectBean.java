@@ -15,6 +15,7 @@ import mgproject.ejb.TaskFacade;
 import mgproject.ejb.UsersFacade;
 import mgproject.entities.Project;
 import mgproject.entities.Task;
+import mgproject.entities.Users;
 
 /**
  *
@@ -65,11 +66,13 @@ public class ManagedProjectBean {
     
     public String doDeleteProject(Project project){
         Collection<Task> tasks = project.getTaskCollection();
+        Collection<Users> users = project.getUsersCollection();
         System.out.println(project.getName());
         
         for (Task task : tasks) {
             taskFacade.remove(task);
-        }  
+        } 
+        
         projectFacade.remove(project);
         loginBean.setProject_list(projectFacade.findByUser(usersFacade.find(loginBean.getIdUser())));
         

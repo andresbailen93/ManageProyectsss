@@ -184,7 +184,7 @@ public class AddProjectBean {
             loginBean.setProject(project);
             loginBean.getProject_list().add(project);
             exito = true;
-            return "addProject";
+            return "project";
         } else {
             error = true;
             return "addProject";

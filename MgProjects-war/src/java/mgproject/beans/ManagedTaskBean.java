@@ -176,12 +176,8 @@ public class ManagedTaskBean {
         return "project";
     }
 
-    public void doPreparetoEdit(Task task) {
-        loginBean.setEditTask(task);
-        
-    }
-
     public String doEditTask(Task task) {
+        loginBean.setEditTask(task);
         taskFacade.edit(loginBean.getEditTask());
         return "project";
     }
