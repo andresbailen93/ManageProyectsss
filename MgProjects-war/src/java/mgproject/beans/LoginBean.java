@@ -53,7 +53,6 @@ public class LoginBean implements Serializable {
     private String taskRep;
     private String taskPln;
     private String taskAcc;
-    private Task editTask;
     private List<Project> list_colaborators;
     private List<Users> users_list;
 
@@ -69,14 +68,6 @@ public class LoginBean implements Serializable {
         this.list_colaborators = list_colaborators;
     }
 
-    public Task getEditTask() {
-        return editTask;
-    }
-
-    public void setEditTask(Task editTask) {
-        this.editTask = editTask;
-    }
-    
     public Collection<Task> getTasks() {
         return tasks;
     }

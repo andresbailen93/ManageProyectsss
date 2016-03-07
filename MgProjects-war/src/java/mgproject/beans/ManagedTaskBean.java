@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -43,7 +42,16 @@ public class ManagedTaskBean {
     private String userid;
     private boolean taskNoAdded;
     private boolean admin;
+    private String editUser;
 
+    public String getEditUser() {
+        return editUser;
+    }
+
+    public void setEditUser(String editUser) {
+        this.editUser = editUser;
+    }
+    
     public boolean isAdmin() {
         return admin;
     }
@@ -176,13 +184,17 @@ public class ManagedTaskBean {
         return "project";
     }
 
-    public String doEditTask(Long idTask) {
-        Task task = new Task();
-        task.setIdTask(idTask);
-        System.out.println("Id de la tarea: " + task);
-        task = taskFacade.find(idTask);
-        loginBean.setEditTask(task);
-        taskFacade.edit(loginBean.getEditTask());
+    public String doEditTask(Task task) {
+        Task editTask = task;
+        Users user = usersFacade.find(this.editUser);
+        
+        Collection<Users> collecttion_user = editTask.getUsersCollection();
+        collecttion_user.clear();
+        collecttion_user.add(user);
+        editTask.setUsersCollection(collecttion_user);
+        
+        taskFacade.edit(editTask);
+
         return "project";
     }
 }
