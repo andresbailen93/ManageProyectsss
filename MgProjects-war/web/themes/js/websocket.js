@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 
-var idProject = document.getElementById("id_project").value;
-var socket = new WebSocket("ws://localhost:8080/MgProjects-war/actions/"+idProject);
+var socket = new WebSocket("ws://localhost:8080/MgProjects-war/actions/"+document.getElementById("id_project").value);
 socket.onmessage = onMessage;
 
 function stopRKey(evt) { 
@@ -24,11 +23,12 @@ function onMessage(event) {
     }
 }
 
-function addMessage(user, description) {
+function addMessage(user, urlImage, description) {
     var MessageAction = {
         action: "add",
         user: user,
-        description: description
+        description: description,
+        urlImage: urlImage
     };
     socket.send(JSON.stringify(MessageAction));
 }
@@ -41,9 +41,7 @@ function printMessageElement(message) {
     content.appendChild(messageDiv);
 
     var userImage = document.createElement("img");
-    var form = document.getElementById("addMessageChat");
-    var urlImage = form.elements["url_image"].value;
-    userImage.setAttribute("src", urlImage);
+    userImage.setAttribute("src", message.urlImage);
     userImage.setAttribute("class", "offline");   
     userImage.setAttribute("alt", "user image");     
     messageDiv.appendChild(userImage);
@@ -63,9 +61,10 @@ function chatSubmit() {
     var form = document.getElementById("addMessageChat");
     form.scrollTop = form.scrollHeight;
     var user = form.elements["nick_user"].value;
+    var urlImage = form.elements["url_image"].value;
     var description = form.elements["message_description"].value; 
     if (description !== "") {
         document.getElementById("addMessageChat").reset();
-        addMessage(user, description);
+        addMessage(user, urlImage, description);
     }
 }

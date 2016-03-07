@@ -6,6 +6,8 @@
 package mgproject.beans;
 
 import java.util.Collection;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -32,7 +34,11 @@ public class ManagedProjectBean {
     @EJB
     private ProjectFacade projectFacade;
     @EJB
-    private UsersFacade usersFacade;
+    private UsersFacade usersFacade;   
+    private int taskAcu;
+    private int taskRep;
+    private int taskPln;
+    private int taskAcc;
     
     /**
      * Creates a new instance of ManagedProjectBean
@@ -62,6 +68,57 @@ public class ManagedProjectBean {
 
     public void setProjectFacade(ProjectFacade projectFacade) {
         this.projectFacade = projectFacade;
+    }
+
+    public int getTaskAcu() {
+        return taskAcu;
+    }
+
+    public void setTaskAcu(int taskAcu) {
+        this.taskAcu = taskAcu;
+    }
+
+    public int getTaskRep() {
+        return taskRep;
+    }
+
+    public void setTaskRep(int taskRep) {
+        this.taskRep = taskRep;
+    }
+
+    public int getTaskPln() {
+        return taskPln;
+    }
+
+    public void setTaskPln(int taskPln) {
+        this.taskPln = taskPln;
+    }
+
+    public int getTaskAcc() {
+        return taskAcc;
+    }
+
+    public void setTaskAcc(int taskAcc) {
+        this.taskAcc = taskAcc;
+    }   
+
+    @PostConstruct
+    public void init() {
+        List<Task> list_task = taskFacade.findTaskByProjectUser(this.loginBean.getProject());
+        for (Task task : list_task) {
+            if(task.getPriority().equals("acuciante")){
+                taskAcu++;
+            }
+            if(task.getPriority().equals("repentino")){
+                taskRep++;
+            }
+            if(task.getPriority().equals("plani")){
+                taskPln++;
+            }
+            if(task.getPriority().equals("accesorio")){
+                taskAcc++;
+            }
+        }
     }
     
     public String doDeleteProject(Project project){

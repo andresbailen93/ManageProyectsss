@@ -7,6 +7,7 @@ package chatWebsocket;
 
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,23 +64,23 @@ public class MessageSessionHandler {
         socketSessions.remove(ss);
     }
 
-    public void addMessage(String idProject, Message message) {
+        public void addMessage(String idProject, Message message) {
         message.setId(messageId);
         messages.add(message);
         messageId++;
-        JsonObject addMessage = createAddMessage(message);
-//        sendToAllConnectedSessions(addMessage);
-        sendToAllProjectSessions(idProject, addMessage);
+        JsonObject addedMessage = createAddMessage(message);
+        sendToAllProjectSessions(idProject, addedMessage);
     }
 
     private JsonObject createAddMessage(Message message) {
         JsonProvider provider = JsonProvider.provider();
-            JsonObject addMessage = provider.createObjectBuilder()
-                .add("action", "add")
-                .add("id", message.getId())
-                .add("description", message.getDescription())
-                .add("user", message.getUser())
-                .build();
+        JsonObject addMessage = provider.createObjectBuilder()
+            .add("action", "add")
+            .add("id", message.getId())
+            .add("description", message.getDescription())
+            .add("user", message.getUser())
+            .add("urlImage", message.getUrlImage())
+            .build();
         return addMessage;
     }
 

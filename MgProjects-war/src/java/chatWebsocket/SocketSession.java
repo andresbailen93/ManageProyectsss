@@ -5,6 +5,7 @@
  */
 package chatWebsocket;
 
+import java.util.HashMap;
 import javax.websocket.Session;
 
 /**

@@ -13,8 +13,17 @@ public class Message {
     private int id;
     private String user;
     private String description;
+    private String urlImage;
 
     public Message() {
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     public String getUser() {

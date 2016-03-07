@@ -10,11 +10,11 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <title>Dashboard</title>
-        <f:metadata>
-            <f:event listener="#{loginBean.init()}" type="preRenderView"/>
-        </f:metadata>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <meta name="google-signin-scope" content="profile email"/>
+        <meta name="google-signin-client_id" content="272492369648-bdp9fp20q7v95edu02aif0eg7v069e42.apps.googleusercontent.com"/>
+        <script src="https://apis.google.com/js/platform.js" defer="true"></script>
         <!-- Bootstrap 3.3.5 -->
         <link rel="stylesheet" href="themes/bootstrap/css/bootstrap.min.css"/>
         <!-- Font Awesome -->
@@ -28,6 +28,8 @@
         <link rel="stylesheet" href="themes/dist/css/skins/_all-skins.min.css"/>
         <!-- iCheck -->
         <link rel="stylesheet" href="themes/plugins/iCheck/flat/blue.css"/>
+        <!-- Morris chart -->
+        <link rel="stylesheet" href="themes/plugins/morris/morris.css"/>
         <!-- Date Picker -->
         <link rel="stylesheet" href="themes/plugins/datepicker/datepicker3.css"/>
         <!-- Daterange picker -->
@@ -41,6 +43,17 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+        <script>
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.log('User signed out.');
+
+                });
+            }
+            ;
+        </script>
     </h:head>
     <h:body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -74,7 +87,7 @@
                             <div class="small-box bg-red">
                                 <div class="inner">
                                     <h3>
-                                        #{managedProjectBean.loginBean.taskAcu}
+                                        #{managedProjectBean.taskAcu}
                                     </h3>
                                     <p>Acuciantes</p>
                                 </div>
@@ -87,7 +100,7 @@
                             <!-- small box -->
                             <div class="small-box bg-yellow">
                                 <div class="inner">
-                                    <h3>#{managedProjectBean.loginBean.taskRep}</h3>
+                                    <h3>#{managedProjectBean.taskRep}</h3>
                                     <p>Repentinas</p>
                                 </div>
                                 <div class="icon">
@@ -99,7 +112,7 @@
                             <!-- small box -->
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h3>#{managedProjectBean.loginBean.taskPln}</h3>
+                                    <h3>#{managedProjectBean.taskPln}</h3>
                                     <p>Planificadas</p>
                                 </div>
                                 <div class="icon">
@@ -111,7 +124,7 @@
                             <!-- small box -->
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3>#{managedProjectBean.loginBean.taskAcc}</h3>
+                                    <h3>#{managedProjectBean.taskAcc}</h3>
                                     <p>Accesorias</p>
                                 </div>
                                 <div class="icon">
@@ -258,7 +271,7 @@
                                                     <f:selectItem itemLabel="Acuciante" itemValue="acuciante" />
                                                     <f:selectItem itemLabel="Repentino" itemValue="repentino" />
                                                     <f:selectItem itemLabel="Planificación" itemValue="plani" />
-                                                    <f:selectItem itemLabel="accesorio" itemValue="accesorio" />
+                                                    <f:selectItem itemLabel="Accesorio" itemValue="accesorio" />
                                                 </h:selectOneMenu>
                                             </div>
                                             <div class="form-group" style="width: 50%; display: inline-block">

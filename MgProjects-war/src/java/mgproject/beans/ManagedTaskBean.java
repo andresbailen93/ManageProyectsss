@@ -148,7 +148,6 @@ public class ManagedTaskBean {
         if(loginBean.getIdUser().equals(loginBean.getProject().getIdAdmin().getIdUser())){
             this.admin = true;
         }
-
     }
 
     public String doAddTask() {

@@ -3,24 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <title>Manage Projects</title>
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-        <!-- Bootstrap 3.3.5 -->
-        <link rel="stylesheet" href="themes/bootstrap/css/bootstrap.min.css"/>
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
-        <!-- Ionicons -->
-        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
-        <!-- Theme style -->
-        <link rel="stylesheet" href="themes/dist/css/AdminLTE.min.css"/>
-
-        <link rel="stylesheet" href="themes/dist/css/skins/skin-blue.min.css"/>
-    </h:head>
-    <h:body class="hold-transition skin-blue sidebar-mini">
+    
+    
         <aside class="main-sidebar">
 
             <!-- sidebar: style can be found in sidebar.less -->
@@ -45,22 +29,16 @@
                 <h:form>
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
-                        <li class="treeview">
-                            <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
-                            <ul class="treeview-menu">
-                              <li><a href="#">Link in level 2</a></li>
-                              <li><a href="#">Link in level 2</a></li>
-                            </ul>
-                        </li>
                         <li>
                             <h:commandLink id="addProject" action="addProject.xhtml">
                                 <span class="fa fa-plus"></span>
                                 <h:outputText value="  Nuevo Proyecto"/>
                             </h:commandLink>
                         </li>
-                        <li class="header">Mis Proyectos</li>
-                        <!-- Optionally, you can add icons to the links -->
-                        <ui:repeat value="#{loginBean.project_list}" var="project">
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-folder-open"></i> <span>Mis Proyectos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="treeview-menu">
+                              <ui:repeat value="#{loginBean.project_list}" var="project">
                             <li>
                                 <h:commandLink id="addProject" action="#{loginBean.doRedirectToProject(project)}">
                                     <span class="fa fa-folder"></span>
@@ -69,8 +47,12 @@
                             </li>
 
                         </ui:repeat>
-                        <li class="header">Proyectos de colaboración</li>
-                         <div>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-folder-open"></i> <span>Proyectos de Colaboración</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="treeview-menu">
+                                <div>
                             <h:outputText rendered="#{projectListBean.error}" value="Vacio"/>
                         </div>
                         <ui:repeat value="#{loginBean.list_colaborators}" var="project">
@@ -82,22 +64,19 @@
                             </li>
 
                         </ui:repeat>
+                            </ul>
+                        
+                        </li>
+                         
                     </ul><!-- /.sidebar-menu -->
                 </h:form>
             </section>
             <!-- /.sidebar -->
         </aside>
 
-        <!-- REQUIRED JS SCRIPTS -->
+        
 
-        <!-- jQuery 2.1.4 -->
-        <script src="themes/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-        <!-- Bootstrap 3.3.5 -->
-        <script src="themes/bootstrap/js/bootstrap.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="themes/dist/js/app.min.js"></script>
-
-    </h:body>
+    
 
 </html>
 
