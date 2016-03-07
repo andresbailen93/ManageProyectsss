@@ -59,7 +59,7 @@ public class MessageWebSocketServer {
                 Message messageChat = new Message();
                 messageChat.setDescription(jsonMessage.getString("description"));
                 messageChat.setUser(jsonMessage.getString("user"));
-//                sessionHandler.addMessage(messageChat);
+                messageChat.setUrlImage(jsonMessage.getString("urlImage"));
                 sessionHandler.addMessage(idProject, messageChat);
             }
         }
