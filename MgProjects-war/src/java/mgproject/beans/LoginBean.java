@@ -13,7 +13,6 @@ package mgproject.beans;
 import java.io.Serializable;
 import javax.faces.bean.SessionScoped;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,18 +47,9 @@ public class LoginBean implements Serializable {
     private boolean singIn;
     private List<Project> project_list;
     private Project project;
-    private Collection<Task> tasks;       
-    private String taskAcu;
-    private String taskRep;
-    private String taskPln;
-    private String taskAcc;
     private Task editTask;
     private List<Project> list_colaborators;
     private List<Users> users_list;
-
-    
-    
-    
 
     public List<Project> getList_colaborators() {
         return list_colaborators;
@@ -75,14 +65,6 @@ public class LoginBean implements Serializable {
 
     public void setEditTask(Task editTask) {
         this.editTask = editTask;
-    }
-    
-    public Collection<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(Collection<Task> tasks) {
-        this.tasks = tasks;
     }
 
     public ProjectFacade getProjectFacade() {
@@ -108,12 +90,6 @@ public class LoginBean implements Serializable {
     public void setUsers_list(List<Users> users_list) {
         this.users_list = users_list;
     }
-
-    
-
-    
-    
-
     
     public List<Project> getProject_list() {
         return project_list;
@@ -179,38 +155,6 @@ public class LoginBean implements Serializable {
         this.payload = payload;
     }
 
-    public String getTaskAcu() {
-        return taskAcu;
-    }
-
-    public void setTaskAcu(String taskAcu) {
-        this.taskAcu = taskAcu;
-    }
-
-    public String getTaskRep() {
-        return taskRep;
-    }
-
-    public void setTaskRep(String taskRep) {
-        this.taskRep = taskRep;
-    }
-
-    public String getTaskPln() {
-        return taskPln;
-    }
-
-    public void setTaskPln(String taskPln) {
-        this.taskPln = taskPln;
-    }
-
-    public String getTaskAcc() {
-        return taskAcc;
-    }
-
-    public void setTaskAcc(String taskAcc) {
-        this.taskAcc = taskAcc;
-    }
-
     public LoginBean() {
     }
 
@@ -247,6 +191,7 @@ public class LoginBean implements Serializable {
         
         return "index";
     }
+    
     public String doLogout() {
         this.singIn = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
@@ -255,69 +200,6 @@ public class LoginBean implements Serializable {
     
     public String doRedirectToProject(Project project){
         this.project = project;
-        this.tasks = project.getTaskCollection();
-        this.taskAcu = getCountTaskAcu();
-        this.taskRep = getCountTaskRep();
-        this.taskPln = getCountTaskPln();
-        this.taskAcc = getCountTaskAcc();
         return "project";
     }
-    
-    private String getCountTaskAcu(){
-        int numTaskAcu = 0;
-        String strTaskAcu;
-        
-        for (Task task : tasks) {
-            if(task.getPriority().equals("acuciante")){
-                numTaskAcu++;
-            }
-        }
-        strTaskAcu = String.valueOf(numTaskAcu);
-        
-        return strTaskAcu;
-    }
-    
-    private String getCountTaskRep(){
-        int numTaskRep = 0;
-        String strTaskRep;
-        
-        for (Task task : tasks) {
-            if(task.getPriority().equals("repentino")){
-                numTaskRep++;
-            }
-        }
-        strTaskRep = String.valueOf(numTaskRep);
-        
-        return strTaskRep;
-    }
-    
-    private String getCountTaskPln(){
-        int numTaskPln = 0;
-        String strTaskPln;
-        
-        for (Task task : tasks) {
-            if(task.getPriority().equals("planificacion")){
-                numTaskPln++;
-            }
-        }
-        strTaskPln = String.valueOf(numTaskPln);
-        
-        return strTaskPln;
-    }
-    
-    private String getCountTaskAcc(){
-        int numTaskAcc = 0;
-        String strTaskAcc;
-        
-        for (Task task : tasks) {
-            if(task.getPriority().equals("accesorio")){
-                numTaskAcc++;
-            }
-        }
-        strTaskAcc = String.valueOf(numTaskAcc);
-        
-        return strTaskAcc;
-    }
-    
-
 }

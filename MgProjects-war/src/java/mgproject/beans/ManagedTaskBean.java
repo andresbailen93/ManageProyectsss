@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -43,6 +42,22 @@ public class ManagedTaskBean {
     private String userid;
     private boolean taskNoAdded;
     private boolean admin;
+
+    public UsersFacade getUsersFacade() {
+        return usersFacade;
+    }
+
+    public void setUsersFacade(UsersFacade usersFacade) {
+        this.usersFacade = usersFacade;
+    }
+
+    public TaskFacade getTaskFacade() {
+        return taskFacade;
+    }
+
+    public void setTaskFacade(TaskFacade taskFacade) {
+        this.taskFacade = taskFacade;
+    }
 
     public boolean isAdmin() {
         return admin;
@@ -140,7 +155,6 @@ public class ManagedTaskBean {
         if(loginBean.getIdUser().equals(loginBean.getProject().getIdAdmin().getIdUser())){
             this.admin = true;
         }
-
     }
 
     public String doAddTask() {

@@ -74,7 +74,7 @@
                             <div class="small-box bg-red">
                                 <div class="inner">
                                     <h3>
-                                        #{managedProjectBean.loginBean.taskAcu}
+                                        #{managedProjectBean.taskAcu}
                                     </h3>
                                     <p>Acuciantes</p>
                                 </div>
@@ -87,7 +87,7 @@
                             <!-- small box -->
                             <div class="small-box bg-yellow">
                                 <div class="inner">
-                                    <h3>#{managedProjectBean.loginBean.taskRep}</h3>
+                                    <h3>#{managedProjectBean.taskRep}</h3>
                                     <p>Repentinas</p>
                                 </div>
                                 <div class="icon">
@@ -99,7 +99,7 @@
                             <!-- small box -->
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h3>#{managedProjectBean.loginBean.taskPln}</h3>
+                                    <h3>#{managedProjectBean.taskPln}</h3>
                                     <p>Planificadas</p>
                                 </div>
                                 <div class="icon">
@@ -111,7 +111,7 @@
                             <!-- small box -->
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3>#{managedProjectBean.loginBean.taskAcc}</h3>
+                                    <h3>#{managedProjectBean.taskAcc}</h3>
                                     <p>Accesorias</p>
                                 </div>
                                 <div class="icon">
@@ -158,8 +158,10 @@
                                                     <!-- todo text -->
                                                     <h:outputLabel><h:outputText value="#{task.name}"></h:outputText></h:outputLabel>
                                                     <!-- Emphasis label -->
-                                                    <small class="label label-danger"><i class="fa fa-clock-o" ></i><h:outputText value=" #{task.time} "/><h:outputText value="#{task.timetype}"/>
-                                                    </small>
+                                                    <h:outputLabel rendered="#{task.priority eq 'urgente'}" class="label label-danger"><i class="fa fa-clock-o" ></i> <h:outputText value=" #{task.time} "/><h:outputText value="#{task.timetype}"/></h:outputLabel>
+                                                    <h:outputLabel rendered="#{task.priority eq 'repentino'}" class="label label-warning"><i class="fa fa-clock-o" ></i> <h:outputText value=" #{task.time} "/><h:outputText value="#{task.timetype}"/></h:outputLabel>
+                                                    <h:outputLabel rendered="#{task.priority eq 'plani'}" class="label label-success"><i class="fa fa-clock-o" ></i> <h:outputText value=" #{task.time} "/><h:outputText value="#{task.timetype}"/></h:outputLabel>
+                                                    <h:outputLabel rendered="#{task.priority eq 'accesorio'}" class="label label-info"><i class="fa fa-clock-o" ></i> <h:outputText value=" #{task.time} "/><h:outputText value="#{task.timetype}"/></h:outputLabel>
                                                     <!-- General tools such as edit or delete-->
                                                     <div class="tools">
                                                         <h:form>
@@ -188,7 +190,7 @@
                                                                     <f:selectItem itemLabel="Acuciante" itemValue="acuciante" />
                                                                     <f:selectItem itemLabel="Repentino" itemValue="repentino" />
                                                                     <f:selectItem itemLabel="Planificación" itemValue="plani" />
-                                                                    <f:selectItem itemLabel="accesorio" itemValue="accesorio" />
+                                                                    <f:selectItem itemLabel="Accesorio" itemValue="accesorio" />
                                                                 </h:selectOneMenu>
                                                             </div>
                                                             <div class="form-group" style="width: 50%; display: inline-block">
@@ -240,7 +242,7 @@
                                                     <f:selectItem itemLabel="Acuciante" itemValue="acuciante" />
                                                     <f:selectItem itemLabel="Repentino" itemValue="repentino" />
                                                     <f:selectItem itemLabel="Planificación" itemValue="plani" />
-                                                    <f:selectItem itemLabel="accesorio" itemValue="accesorio" />
+                                                    <f:selectItem itemLabel="Accesorio" itemValue="accesorio" />
                                                 </h:selectOneMenu>
                                             </div>
                                             <div class="form-group" style="width: 50%; display: inline-block">
